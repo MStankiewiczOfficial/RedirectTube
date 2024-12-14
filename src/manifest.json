@@ -1,0 +1,39 @@
+{
+    "name": "RedirectTube",
+    "description": "Open YouTube links in FreeTube",
+    "author": "Michał Stankiewicz",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "img/icns/normal/16.png",
+        "32": "img/icns/normal/32.png",
+        "48": "img/icns/normal/48.png",
+        "64": "img/icns/normal/64.png",
+        "96": "img/icns/normal/96.png",
+        "128": "img/icns/normal/128.png",
+        "256": "img/icns/normal/256.png",
+        "512": "img/icns/normal/512.png"
+    },
+    "background": {
+        "page": "background.html"
+    },
+    "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "contextMenus"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "redirecttube@stankiewiczm.eu",
+            "strict_min_version": "109.0"
+        }
+    }
+}
