@@ -50,7 +50,7 @@ If you encounter any issues, please report them on the [issues page](https://git
 
 
 ## License
-RedirectTube is licensed under CC BY-NC-SA 4.0. For details, please refer to the [LICENSE](LICENSE).
+RedirectTube is licensed under CC BY-NC-SA 4.0. For details, please refer to the [LICENSE](LICENSE.md).
 
 > [!NOTE]
 > **RedirectTube** is not affiliated with FreeTube or its creators. FreeTube is licensed under the [MIT licence](https://github.com/FreeTubeApp/FreeTube-Docs/blob/master/LICENSE). The name *FreeTube* and FreeTube logo are the property of the [creators of FreeTube](https://docs.freetubeapp.io/credits/). Neither I nor the extension are associated with them.
