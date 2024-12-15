@@ -48,5 +48,9 @@ Right-click a YouTube link and select "Open in FreeTube" to open the video in Fr
 ## Issues
 If you encounter any issues, please report them on the [issues page](https://github.com/MStankiewiczOfficial/RedirectTube/issues/).
 
+
+## License
+RedirectTube is licensed under CC BY-NC-SA 4.0. For details, please refer to the [LICENSE](LICENSE).
+
 > [!NOTE]
 > **RedirectTube** is not affiliated with FreeTube or its creators. FreeTube is licensed under the [MIT licence](https://github.com/FreeTubeApp/FreeTube-Docs/blob/master/LICENSE). The name *FreeTube* and FreeTube logo are the property of the [creators of FreeTube](https://docs.freetubeapp.io/credits/). Neither I nor the extension are associated with them.
