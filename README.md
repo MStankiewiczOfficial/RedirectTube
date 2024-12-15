@@ -13,7 +13,7 @@ RedirectTube is a browser extension that redirects YouTube links to FreeTube. It
 This method works only for Firefox ESR and Firefox Developer Edition.
 > [!CAUTION]
 > This method disables signature verification for add-ons. This can make your browser less secure. Use this method at your own risk.
-1. Go to [about:config](about:config) in your browser.
+1. Go to `about:config` in your browser.
 2. Set `xpinstall.signatures.required` to `false`.
 3. Download the latest release of RedirectTube from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don't do next steps.
 4. Open the downloaded file in Firefox.
