@@ -1,4 +1,9 @@
-![RedirectTube](/assets/banner.png)
+<p align="center">
+   <img src="/assets/banner.png" title="RedirectTube">
+   <a href="https://addons.mozilla.org/pl/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a>
+   <br>
+   <img src="https://app.codacy.com/project/badge/Grade/f89d4aaf14da4e7e9d1b2f123925586b"/>
+</p>
 
 ## Open YouTube links in FreeTube
 
