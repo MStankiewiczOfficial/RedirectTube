@@ -2,7 +2,7 @@
 
 <img style="height:48px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:48px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:48px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:48px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
 
-#### Name *FreeTube* and FreeTube logo are the property of the [creators of FreeTube](https://docs.freetubeapp.io/credits/). Neither I nor the extension are associated with them. [FreeTube](https://freetubeapp.io/) is licensed under [MIT licence](https://github.com/FreeTubeApp/FreeTube-Docs/blob/master/LICENSE).
+#### Name *FreeTube* and FreeTube logo are the property of the [creators of FreeTube](https://docs.freetubeapp.io/credits/). Neither I nor the extension are associated with them. [FreeTube](https://freetubeapp.io/) is licensed under [AGPL-3.0 license](https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE).
 
 ### You are free to:
 
