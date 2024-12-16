@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     detectYT(changeInfo);
 });
 
@@ -30,13 +30,9 @@ chrome.contextMenus.create({
     ]
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === "openInFreeTube" && info.linkUrl) {
         let newUrl = "freetube://" + info.linkUrl;
-        if (newUrl.includes("youtu.be")) {
-            const videoId = newUrl.split("/").pop();
-            newUrl = `freetube://https://www.youtube.com/watch?v=${videoId}`;
-        }
         chrome.tabs.update({ url: newUrl });
         console.log(newUrl);
     }
