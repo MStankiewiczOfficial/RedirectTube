@@ -1,0 +1,72 @@
+name: Build, Sign and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y zip jq
+        npm install -g web-ext
+
+    - name: Extract data from manifest.json
+      id: extract-data
+      run: |
+        NAME=$(jq -r '.name' src/Gecko/manifest.json | tr ' ' '_')
+        VERSION=$(jq -r '.version' src/manifest.json)
+        ID=$(jq -r '.browser_specific_settings.gecko.id' src/manifest.json)
+        echo "EXT_NAME=${NAME}" >> $GITHUB_ENV
+        echo "EXT_VERSION=${VERSION}" >> $GITHUB_ENV
+        echo "EXT_ID=${ID}" >> $GITHUB_ENV
+
+    - name: Prepare artifacts directory
+      run: |
+        mkdir -p artifacts/unsigned
+        mkdir -p artifacts/signed
+
+    - name: Generate tag and release name
+      id: generate-tag
+      run: |
+        YEAR=$(date +'%y')
+        MONTH=$(date +'%m')
+        RELEASE_COUNT=$(curl -s \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/releases \
+          | jq "[.[] | select(.tag_name | startswith(\"${YEAR}${MONTH}\"))] | length + 1")
+        TAG="${YEAR}${MONTH}$(printf "%02d" ${RELEASE_COUNT})"
+        RELEASE_NAME="${EXT_VERSION} (${TAG})"
+        echo "RELEASE_TAG=${TAG}" >> $GITHUB_ENV
+        echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV
+
+    - name: Build unsigned XPI
+      run: |
+        web-ext build -s src --artifacts-dir ./artifacts
+        mv ./artifacts/*.zip ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip
+
+    - name: Convert ZIP to XPI
+      run: |
+        mv ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi
+
+    - name: Sign XPI
+      env:
+        WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
+        WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+      run: |
+        web-ext sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --artifacts-dir ./artifacts/signed --source-dir src/Gecko
+        mv ./artifacts/signed/*.xpi ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi
+
+    - name: Create GitHub Release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create ${{ env.RELEASE_TAG }} ./artifacts/unsigned/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-unsigned.xpi ./artifacts/signed/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-signed.xpi -t '${{ env.RELEASE_NAME }}' -F ./release-notes.md
