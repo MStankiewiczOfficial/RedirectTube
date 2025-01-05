@@ -19,16 +19,9 @@ You can install RedirectTube from the Firefox Add-ons.
 
 ### Method 2: Manual installation
 
-This method works only for Firefox ESR and Firefox Developer Edition.
-
-> [!CAUTION]
-> This method disables signature verification for add-ons. This can make your browser less secure. Use this method at your own risk.
-
-1. Go to `about:config` in your browser.
-2. Set `xpinstall.signatures.required` to `false`.
-3. Download the latest release of RedirectTube from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don’t proceed with the next steps.
-4. Open the downloaded file in Firefox.
-5. Click "Add" to install the extension.
+1. Download the latest release of RedirectTube (file that ends with `-signed.xpi`) from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don’t proceed with the next steps.
+2. Open the downloaded file in Firefox.
+3. Click "Add" to install the extension.
    And that's it! RedirectTube is now installed in your browser.
 
 ### Method 3: Developer mode
