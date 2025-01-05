@@ -15,7 +15,7 @@ RedirectTube is a browser extension that redirects YouTube links to FreeTube. It
 
 You can install RedirectTube from the Firefox Add-ons.
 
-[![Download](https://img.shields.io/badge/Download-%23000000.svg?style=for-the-badge&logo=firefox&logoColor=#FF7139)](https://addons.mozilla.org/pl/firefox/addon/redirecttube/)
+[![Get the Add-on](https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png)](https://addons.mozilla.org/pl/firefox/addon/redirecttube/)
 
 ### Method 2: Manual installation
 
@@ -26,7 +26,7 @@ This method works only for Firefox ESR and Firefox Developer Edition.
 
 1. Go to `about:config` in your browser.
 2. Set `xpinstall.signatures.required` to `false`.
-3. Download the latest release of RedirectTube from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don't do next steps.
+3. Download the latest release of RedirectTube from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don’t proceed with the next steps.
 4. Open the downloaded file in Firefox.
 5. Click "Add" to install the extension.
    And that's it! RedirectTube is now installed in your browser.
