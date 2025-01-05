@@ -23,8 +23,8 @@ jobs:
       id: extract-data
       run: |
         NAME=$(jq -r '.name' src/Gecko/manifest.json | tr ' ' '_')
-        VERSION=$(jq -r '.version' src/manifest.json)
-        ID=$(jq -r '.browser_specific_settings.gecko.id' src/manifest.json)
+        VERSION=$(jq -r '.version' src/Gecko/manifest.json)
+        ID=$(jq -r '.browser_specific_settings.gecko.id' src/Gecko/manifest.json)
         echo "EXT_NAME=${NAME}" >> $GITHUB_ENV
         echo "EXT_VERSION=${VERSION}" >> $GITHUB_ENV
         echo "EXT_ID=${ID}" >> $GITHUB_ENV
@@ -50,7 +50,7 @@ jobs:
 
     - name: Build unsigned XPI
       run: |
-        web-ext build -s src --artifacts-dir ./artifacts
+        web-ext build -s src/Gecko --artifacts-dir ./artifacts
         mv ./artifacts/*.zip ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip
 
     - name: Convert ZIP to XPI
