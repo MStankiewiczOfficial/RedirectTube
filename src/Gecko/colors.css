@@ -1,0 +1,14 @@
+:root {
+    --popup-background: #fff;
+    --popup-color: #000;
+    --popup-accent: #00308a;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --popup-background: #000;
+        --popup-color: #fff;
+        --popup-accent: rgb(66, 142, 255);
+    }
+    
+}
