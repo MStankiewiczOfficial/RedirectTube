@@ -1,0 +1,72 @@
+@import url('colors.css');
+
+body {
+    background-color: var(--popup-background);
+    color: var(--popup-color);
+    font-family: sans-serif;
+    width: 300px;
+    padding: 0px;
+    margin: 0;
+    cursor: default;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#title {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    background-color: #7979793f;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0.5em;
+}
+
+#content {
+    padding: 0;
+}
+
+#content button {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0;
+    border: #79797979 solid 1px;
+    background-color: #79797979;
+    color: var(--popup-color);
+    font-size: 1em;
+}
+
+#content button:hover {
+    background-color: #797979b9;
+}
+
+#content button:disabled {
+    background-color: #79797979;
+    color: #79797979;
+    cursor: not-allowed;
+}
+
+a {
+    color: var(--popup-accent);
+}
+
+#errorText {
+    color: red;
+    font-size: 1em;
+    text-align: center;
+    padding: 0.5em;
+}
+
+footer {
+    text-align: center;
+    padding: 0;
+}
+
+footer p {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0.5em;
+}

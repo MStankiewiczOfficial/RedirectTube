@@ -1,0 +1,33 @@
+@import url('colors.css');
+
+body {
+    background-color: var(--popup-background);
+    color: var(--popup-color);
+    font-family: sans-serif;
+    padding: 0px;
+    margin: 32px;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+a {
+    color: var(--popup-accent);
+}
+
+#errorText {
+    color: red;
+    font-size: 1em;
+    text-align: center;
+    padding: 0.5em;
+}
+
+footer p {
+    font-size: 0.8em;
+}
