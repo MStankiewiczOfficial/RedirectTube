@@ -43,7 +43,7 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ github.repository }}/releases \
           | jq "[.[] | select(.tag_name | startswith(\"${YEAR}${MONTH}\"))] | length + 1")
-        TAG="${YEAR}${MONTH}$(printf "%02d" ${RELEASE_COUNT})"
+        TAG="${YEAR}${MONTH}$(printf "%0${#RELEASE_COUNT}d" ${RELEASE_COUNT})"
         RELEASE_NAME="${EXT_VERSION} (${TAG})"
         echo "RELEASE_TAG=${TAG}" >> $GITHUB_ENV
         echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV

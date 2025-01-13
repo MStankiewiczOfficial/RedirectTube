@@ -1,33 +1,158 @@
 @import url('colors.css');
 
 body {
-    background-color: var(--popup-background);
-    color: var(--popup-color);
+    background-color: var(--background);
+    color: var(--color);
     font-family: sans-serif;
     padding: 0px;
-    margin: 32px;
-}
-
-h1 {
-    font-size: 1.5em;
     margin: 0;
 }
 
-h2 {
-    font-size: 1.2em;
+#title {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    background-color: #cb1314;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+}
+
+h1 {
+    margin-top: 1em;
+    margin-left: 32px;
+    font-size: 1.7em;
 }
 
 a {
-    color: var(--popup-accent);
+    color: var(--url);
+    transition: all 0.3s;
 }
 
-#errorText {
-    color: red;
-    font-size: 1em;
-    text-align: center;
+a:hover {
+    color: var(--url-hover);
+}
+
+.section {
+    margin: 0.75em 32px;
+}
+
+select {
+    padding: 0.5em 1em;
+    margin: 2px;
+    border: #79797979 solid 1px;
+    border-radius: 4px;
+    background-color: #79797979;
+    color: var(--color);
+    transition: all 0.3s;
+    font-size: 0.9em;
+}
+
+select:hover {
+    background-color: #797979b9;
+}
+
+.extensionIcon {
+    width: min-content;
+    display: flex;
+    margin: 0.5em 0.5em 0.5em 0;
+}
+
+.extensionIconsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.extensionIcon input[type="radio"] {
+    display: none;
+}
+
+.extensionIcons {
+    padding: 6px 6px 3px 6px;
+    border: 2px solid var(--background);
+    border-radius: 8px;
+    transition: all 0.15s;
+}
+
+.extensionIcon input[type="radio"]:hover + .extensionIcons {
+    border: 2px solid var(--color2-transparent);
+}
+
+.extensionIcon input[type="radio"]:checked + .extensionIcons {
+    border: 2px solid var(--color2);
+}
+
+.extensionIcons img {
+    height: 32px;
+}
+
+button {
+    padding: 0.5em 1em;
+    margin: 2px;
+    border: #79797979 solid 1px;
+    border-radius: 4px;
+    background-color: #79797979;
+    color: var(--color);
+    transition: all 0.3s;
+    font-size: 0.9em;
+}
+
+button:hover {
+    background-color: #797979b9;
+}
+
+button:disabled {
+    background-color: #79797979;
+    color: #79797979;
+    cursor: not-allowed;
+}
+
+footer {
+    margin-top: 1em;
     padding: 0.5em;
+    text-align: center;
+    background-color: #7979793f;
 }
 
 footer p {
     font-size: 0.8em;
+}
+
+.socials {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-end;
+    top: 8px;
+    right: 8px;
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.socialTitle {
+    display: none;
+    color: #ffffff;
+    margin-right: 6px;
+}
+
+.socialLogo {
+    width: 24px;
+    height: 24px;
+    fill: #ffffffd0;
+    transition: all 0.3s;
+    cursor: default;
+}
+.socialLogo:hover {
+    fill: #ffffff;
 }

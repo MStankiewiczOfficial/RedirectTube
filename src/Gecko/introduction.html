@@ -4,8 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>RedirectTube</title>
-        <link rel="stylesheet" href="options.css">
+        <title>RedirectTube • Introduction</title>
+        <link rel="icon" href="img/icns/color/allow/32.png" type="image/png">
+        <link rel="stylesheet" href="introduction.css">
     </head>
 </head>
 <body>
@@ -83,48 +84,20 @@
         </div>
     </div>
     <div id="content">
-        <h1>Options</h1>
         <div class="section">
-            <label for="popupBehavior">When clicking the extension icon:</label>
-            <select name="popupBehavior" id="popupBehavior">
-                <option value="showPopup">Show menu</option>
-                <option value="redirect">Redirect to FreeTube</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <label for="extensionIcon">Extension icon:</label>
-            <div class="extensionIconsList">
-                <label class="extensionIcon">
-                    <input type="radio" name="extensionIcon" value="color" id="colorIcon">
-                    <div class="extensionIcons">
-                        <img src="img/icns/color/example.png" alt="Color icons">
-                    </div>
-                </label>
-                <label class="extensionIcon">
-                    <input type="radio" name="extensionIcon" value="mono" id="monoIcon">
-                    <div class="extensionIcons">
-                        <img src="img/icns/mono/black/example.png" class="browser-light" alt="Mono icons">
-                        <img src="img/icns/mono/white/example.png" class="browser-dark" alt="Mono icons">
-                    </div>
-                </label>
+            <h1>Usage</h1>
+            <div class="images">
+                <div class="image">
+                    <h2>Click  the icon when you are on a YouTube video page</h2>
+                    <img src="img/toolbar-transparent.png" alt="Toolbar">
+                </div>
+                <div class="image">
+                    <h2>or right-click on the url of a YouTube video</h2>
+                    <img src="img/context-menu-transparent.png" alt="RedirectTube">
+                </div>
             </div>
+            <button id="close">Close</button>
         </div>
-        <br>
-        <div class="section">
-            <button id="opinionButton">Give your opinion</button>
-            <button id="suggestionButton">Make a suggestion</button>
-            <button id="issueButton">Report an issue</button>
-        </div>
-    </div>
-    <br>
-    <footer>
-        <p>RedirectTube v<span id="version">X.Y.Z</span></p>
-        <p>Created with ❤️ by <a href="https://www.stankiewiczm.eu" target="_blank">Michał Stankiewicz</a></p>
-        <p>If you like this extension, consider <a href="https://ko-fi.com/mstankiewicz" target="_blank">buying me a tea</a> 🍵</p>
-        <hr>
-        <p>RedirectTube is not affiliated with FreeTube or its creators.<br>FreeTube is licensed under the <a href="https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE">AGPL-3.0 licence</a>.<br>The name "FreeTube" and FreeTube logo are the property of the <a href="https://docs.freetubeapp.io/credits/">creators of FreeTube</a>.</p>
-    </footer>
-    <script src="options.js"></script>
+    <script src="introduction.js"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 var errorText = document.getElementById("errorText");
 var redirectButton = document.getElementById("redirectButton");
-var settingsButton = document.getElementById("settingsButton");
+var optionsButton = document.getElementById("optionsButton");
+var opinionButton = document.getElementById("opinionButton");
+var suggestionButton = document.getElementById("suggestionButton");
+var issueButton = document.getElementById("issueButton");
 
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -36,8 +39,18 @@ redirectButton.addEventListener('click', function() {
     }
 });
 
-settingsButton.addEventListener('click', function() {
-    if (settingsButton.disabled === false) {
+optionsButton.addEventListener('click', function() {
         chrome.runtime.openOptionsPage();
-    }
+});
+
+opinionButton.addEventListener('click', function() {
+    chrome.tabs.create({ url: "https://addons.mozilla.org/firefox/addon/redirecttube/" });
+});
+
+suggestionButton.addEventListener('click', function() {
+    chrome.tabs.create({ url: "https://github.com/MStankiewiczOfficial/RedirectTube/issues/new?assignees=MStankiewiczOfficial&labels=enhancement&projects=&template=feature-request.yml&title=%5BFR%5D%3A+" });
+});
+
+issueButton.addEventListener('click', function() {
+    chrome.tabs.create({ url: "https://github.com/MStankiewiczOfficial/RedirectTube/issues/new?assignees=MStankiewiczOfficial&labels=bug&projects=&template=bug-report.yml&title=%5BBug%5D%3A+" });
 });
