@@ -8,13 +8,57 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
     });
 });
 
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    detectYTInThisTab();
+});
+
+browser.runtime.onInstalled.addListener(() => {
+    detectYTInThisTab();
+});
+
+chrome.runtime.onMessage.addListener(function(request) {
+    if (request.message === "detectYT") {
+        detectYTInThisTab();
+    }
+});
+
+function detectYTInThisTab() {
+    browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        browser.tabs.get(tabs[0].id, function (tab) {
+            detectYT(tab);
+        });
+    });
+}
+
 function detectYT(changeInfo) {
     openedUrl = changeInfo.url;
     if (openedUrl) {
         if (openedUrl.startsWith("https://www.youtube.com/watch?v=")) {
-            chrome.action.setIcon({ path: "img/icns/normal/64.png" });
+            browser.storage.local.get("extensionIcon").then(function(result) {
+                if (result.extensionIcon === "color") {
+                    chrome.action.setIcon({ path: "img/icns/color/allow/64.png" });
+                }
+                if (result.extensionIcon === "mono") {
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        chrome.action.setIcon({ path: "img/icns/mono/white/allow/64.png" });
+                    } else {
+                        chrome.action.setIcon({ path: "img/icns/mono/black/allow/64.png" });
+                    }
+                }
+            });
         } else {
-            chrome.action.setIcon({ path: "img/icns/grey/64.png" });
+            browser.storage.local.get("extensionIcon").then(function(result) {
+                if (result.extensionIcon === "color") {
+                    chrome.action.setIcon({ path: "img/icns/color/disallow/64.png" });
+                }
+                if (result.extensionIcon === "mono") {
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        chrome.action.setIcon({ path: "img/icns/mono/white/disallow/64.png" });
+                    } else {
+                        chrome.action.setIcon({ path: "img/icns/mono/black/disallow/64.png" });
+                    }
+                }
+            });
         }
     }
 }
@@ -35,5 +79,11 @@ chrome.contextMenus.onClicked.addListener((info) => {
         let newUrl = "freetube://" + info.linkUrl;
         chrome.tabs.update({ url: newUrl });
         console.log(newUrl);
+    }
+});
+
+chrome.runtime.onInstalled.addListener(function(details) {
+    if (details.reason === "install") {
+        chrome.tabs.create({ url: "introduction.html" });
     }
 });
