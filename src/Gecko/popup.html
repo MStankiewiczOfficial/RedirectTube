@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedirectTube</title>
+    <title data-i18n="popup.page.title">RedirectTube</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
@@ -63,16 +63,17 @@
         </svg>
     </div>
     <div id="content">
-        <button id="redirectButton" class="primary">Open this site in FreeTube</button>
-        <button id="optionsButton">Options</button>
-        <button id="opinionButton">Give your opinion</button>
-        <button id="suggestionButton">Make a suggestion</button>
-        <button id="issueButton">Report an issue</button>
+        <button id="redirectButton" class="primary" data-i18n="ui.button.redirect">Open this site in FreeTube</button>
+        <button id="optionsButton" data-i18n="ui.button.options">Options</button>
+        <button id="opinionButton" data-i18n="ui.button.opinion">Give your opinion</button>
+        <button id="suggestionButton" data-i18n="ui.button.suggestion">Make a suggestion</button>
+        <button id="issueButton" data-i18n="ui.button.issue">Report an issue</button>
     </div>
     <p id="errorText"></p>
     <footer>
-        <p>Created with ❤️ by <a href="https://www.stankiewiczm.eu" target="_blank">Michał Stankiewicz</a></p>
+        <p data-i18n="ui.createdby">Created with ❤️ by <a href="https://www.stankiewiczm.eu" target="_blank">Michał Stankiewicz</a></p>
     </footer>
+    <script src="i18n/translate.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

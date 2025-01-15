@@ -56,37 +56,37 @@ select:hover {
     background-color: #797979b9;
 }
 
-.extensionIcon {
+.extension-icon {
     width: min-content;
     display: flex;
     margin: 0.5em 0.5em 0.5em 0;
 }
 
-.extensionIconsList {
+.extension-icons-list {
     display: flex;
     flex-wrap: wrap;
 }
 
-.extensionIcon input[type="radio"] {
+.extension-icon input[type="radio"] {
     display: none;
 }
 
-.extensionIcons {
+.extension-icons {
     padding: 6px 6px 3px 6px;
     border: 2px solid var(--background);
     border-radius: 8px;
     transition: all 0.15s;
 }
 
-.extensionIcon input[type="radio"]:hover + .extensionIcons {
+.extension-icon input[type="radio"]:hover + .extension-icons {
     border: 2px solid var(--color2-transparent);
 }
 
-.extensionIcon input[type="radio"]:checked + .extensionIcons {
+.extension-icon input[type="radio"]:checked + .extension-icons {
     border: 2px solid var(--color2);
 }
 
-.extensionIcons img {
+.extension-icons img {
     height: 32px;
 }
 
@@ -140,19 +140,19 @@ footer p {
     transition: all 0.3s;
 }
 
-.socialTitle {
+.social-title {
     display: none;
     color: #ffffff;
     margin-right: 6px;
 }
 
-.socialLogo {
+.social-logo {
     width: 24px;
     height: 24px;
     fill: #ffffffd0;
     transition: all 0.3s;
     cursor: default;
 }
-.socialLogo:hover {
+.social-logo:hover {
     fill: #ffffff;
 }

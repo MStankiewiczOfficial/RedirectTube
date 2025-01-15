@@ -39,7 +39,9 @@ issueButton.addEventListener('click', function() {
     chrome.tabs.create({ url: "https://github.com/MStankiewiczOfficial/RedirectTube/issues/new?assignees=MStankiewiczOfficial&labels=bug&projects=&template=bug-report.yml&title=%5BBug%5D%3A+" });
 });
 
-document.querySelector("#version").textContent = browser.runtime.getManifest().version;
+setTimeout(() => {
+    document.querySelector("#version").textContent = browser.runtime.getManifest().version;
+}, 10);
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("#popupBehavior").addEventListener("change", saveOptions);
