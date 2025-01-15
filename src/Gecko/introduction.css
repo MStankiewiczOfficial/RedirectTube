@@ -4,7 +4,7 @@ body {
     background-color: var(--background);
     color: var(--color);
     font-family: sans-serif;
-    padding: 0px;
+    padding: 0;
     margin: 0;
 }
 
@@ -61,19 +61,19 @@ a:hover {
     transition: all 0.3s;
 }
 
-.socialTitle {
+.social-title {
     display: none;
     color: #ffffff;
     margin-right: 6px;
 }
 
-.socialLogo {
+.social-logo {
     width: 24px;
     height: 24px;
     transition: all 0.3s;
     fill: #ffffffd0;
 }
-.socialLogo:hover {
+.social-logo:hover {
     fill: #ffffff;
 }
 

@@ -11,8 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (url.startsWith("https://www.youtube.com/watch?v=")) {
             loadOptions(url, tabs);
         } else {
-            errorText.innerHTML = "Cannot open this page in FreeTube.";
-            redirectButton.disabled = true;
+            fetch(`i18n/locales/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    errorText.innerHTML = data.ui.error.e404;
+                    redirectButton.disabled = true;
+                });
         }
     });
 });

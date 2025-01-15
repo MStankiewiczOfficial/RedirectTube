@@ -1,19 +1,23 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     detectYT(changeInfo);
+    createContextMenu();
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
     chrome.tabs.get(activeInfo.tabId, function(tab) {
         detectYT(tab);
+        createContextMenu();
     });
 });
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     detectYTInThisTab();
+    createContextMenu();
 });
 
 browser.runtime.onInstalled.addListener(() => {
     detectYTInThisTab();
+    createContextMenu();
 });
 
 chrome.runtime.onMessage.addListener(function(request) {
@@ -63,17 +67,6 @@ function detectYT(changeInfo) {
     }
 }
 
-chrome.contextMenus.create({
-    id: "openInFreeTube",
-    title: "Open in FreeTube",
-    contexts: ["link"],
-    targetUrlPatterns: [
-        "*://www.youtube.com/*",
-        "*://youtube.com/*",
-        "*://youtu.be/*"
-    ]
-});
-
 chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === "openInFreeTube" && info.linkUrl) {
         let newUrl = "freetube://" + info.linkUrl;
@@ -87,3 +80,25 @@ chrome.runtime.onInstalled.addListener(function(details) {
         chrome.tabs.create({ url: "introduction.html" });
     }
 });
+
+function createContextMenu() {
+    chrome.storage.local.get("lang", function (result) {
+        lang = result.lang;
+        fetch(`i18n/locales/${lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                menuTitleRedirect = data.ui.contextMenu.redirect;
+                chrome.contextMenus.create({
+                    id: "openInFreeTube",
+                    title: menuTitleRedirect,
+                    contexts: ["link"],
+                    targetUrlPatterns: [
+                        "*://www.youtube.com/*",
+                        "*://youtube.com/*",
+                        "*://youtu.be/*"
+                    ]
+                });
+            });
+    }
+    );
+}
