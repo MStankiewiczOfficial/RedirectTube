@@ -42,12 +42,15 @@ a:hover {
 }
 
 select {
+    position: absolute;
+    right: 32px;
     padding: 0.5em 1em;
     margin: 2px;
     border: #79797979 solid 1px;
     border-radius: 4px;
     background-color: #79797979;
     color: var(--color);
+    transform: translateY(-30%);
     transition: all 0.3s;
     font-size: 0.9em;
 }
@@ -155,4 +158,15 @@ footer p {
 }
 .social-logo:hover {
     fill: #ffffff;
+}
+
+.beta-label {
+    position: absolute;
+    padding: 0.5em;
+    background-color: #cb1314;
+    color: #fff;
+    font-size: 8px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transform: translate(4px, -50%);
 }

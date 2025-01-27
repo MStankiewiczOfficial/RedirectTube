@@ -1,0 +1,13 @@
+.redirecttube-redirection-button {
+    position: absolute;
+    z-index: 10000;
+    height: 47px;
+    padding: 0 10px;
+    background-color: #171717cc;
+    color: #fff;
+    font: 400 16px/16px "YouTube Noto",Roboto,Arial,Helvetica,sans-serif;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    transition: all 0.3s;
+    cursor: pointer;
+}

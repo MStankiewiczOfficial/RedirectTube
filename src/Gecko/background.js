@@ -1,6 +1,18 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
     detectYT(changeInfo);
     createContextMenu();
+    chrome.storage.local.get(["lang", "iframeButton"], function (result) {
+        lang = result.lang;
+        iframeButton = result.iframeButton;
+        fetch(`i18n/locales/${lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                buttonName = data.ui.contextMenu.redirect;
+                browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                    chrome.tabs.sendMessage(tabs[0].id, {redirecttubeButtonName: buttonName, redirecttubeIframeButton: iframeButton});
+                });
+            });
+    });
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
@@ -71,7 +83,6 @@ chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === "openInFreeTube" && info.linkUrl) {
         let newUrl = "freetube://" + info.linkUrl;
         chrome.tabs.update({ url: newUrl });
-        console.log(newUrl);
     }
 });
 
@@ -99,6 +110,5 @@ function createContextMenu() {
                     ]
                 });
             });
-    }
-    );
+    });
 }

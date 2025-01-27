@@ -2,7 +2,8 @@
    <img src="/assets/banner.png" title="RedirectTube">
    <a href="https://addons.mozilla.org/pl/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a>
    <br>
-   <img src="https://app.codacy.com/project/badge/Grade/f89d4aaf14da4e7e9d1b2f123925586b"/>
+   <img src="https://app.codacy.com/project/badge/Grade/5fbd04d2b238474ca9c21fc62de6ecda"><a href="https://translate.codeberg.org/engage/redirecttube/"><img src="https://translate.codeberg.org/widget/redirecttube/ui/svg-badge.svg"></a>
+</a>
 </p>
 
 ## Open YouTube links in FreeTube
@@ -55,6 +56,12 @@ Right-click a YouTube link and select "Open in FreeTube" to open the video in Fr
 ## Issues
 
 If you encounter any issues, please report them on the [issues page](https://github.com/MStankiewiczOfficial/RedirectTube/issues/).
+
+## Translation
+
+If your language is not yet supported by RedirectTube, you can change that! Help develop the extension by translating it into your language.
+
+[![](https://translate.codeberg.org/widget/redirecttube/ui/open-graph.png)](https://translate.codeberg.org/engage/redirecttube/)
 
 ## License
 

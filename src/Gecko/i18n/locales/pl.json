@@ -12,6 +12,9 @@
         "contextMenu": {
             "redirect": "Otwórz we FreeTube"
         },
+        "beta": {
+            "label": "Beta"
+        },
         "error": {
             "e404": "Nie można otworzyć tej strony we FreeTube."
         }
@@ -37,6 +40,11 @@
             "label": "Po kliknięciu ikony rozszerzenia:",
             "showPopup": "Pokaż menu",
             "redirect": "Przekieruj do FreeTube"
+        },
+        "iframeButton": {
+            "label": "Pokaż przycisk w ramkach iframe:",
+            "yes": "Tak",
+            "no": "Nie"
         },
         "extensionIcon": {
             "label": "Ikona rozszerzenia:"
