@@ -12,6 +12,9 @@
         "contextMenu": {
             "redirect": "Open in FreeTube"
         },
+        "beta": {
+            "label": "Beta"
+        },
         "error": {
             "e404": "Cannot open this page in FreeTube."
         }
@@ -37,6 +40,11 @@
             "label": "When clicking the extension icon:",
             "showPopup": "Show menu",
             "redirect": "Redirect to FreeTube"
+        },
+        "iframeButton": {
+            "label": "Show button in iframes:",
+            "yes": "Yes",
+            "no": "No"
         },
         "extensionIcon": {
             "label": "Extension icon:"

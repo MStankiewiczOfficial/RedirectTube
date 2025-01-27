@@ -1,4 +1,5 @@
 var popupBehavior = "showPopup";
+var iframeButton = "iframeButtonNo";
 var extensionIcon = "color";
 
 function saveOptions(e) {
@@ -6,6 +7,7 @@ function saveOptions(e) {
         e.preventDefault();
         browser.storage.local.set({
             popupBehavior: document.getElementById("popupBehavior").value,
+            iframeButton: document.getElementById("iframeButton").value,
             extensionIcon: document.querySelector('input[name="extensionIcon"]:checked').value
         });
         chrome.runtime.sendMessage({ message: "detectYT" });
@@ -16,6 +18,7 @@ function saveOptions(e) {
 function restoreOptions() {
     function setCurrentChoice(result) {
         document.getElementById("popupBehavior").value = result.popupBehavior || popupBehavior;
+        document.getElementById("iframeButton").value = result.iframeButton || iframeButton;
         document.querySelector('input[name="extensionIcon"][value="' + (result.extensionIcon || extensionIcon) + '"]').checked = true;
     }
 
@@ -23,7 +26,7 @@ function restoreOptions() {
         console.log(`Error: ${error}`);
     }
 
-    var getting = browser.storage.local.get(["popupBehavior", "extensionIcon"]);
+    var getting = browser.storage.local.get(["popupBehavior", "iframeButton", "extensionIcon"]);
     getting.then(setCurrentChoice, onError);
 }
 
@@ -45,5 +48,6 @@ setTimeout(() => {
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("#popupBehavior").addEventListener("change", saveOptions);
+document.querySelector("#iframeButton").addEventListener("change", saveOptions);
 document.querySelector("#colorIcon").addEventListener("click", saveOptions);
 document.querySelector("#monoIcon").addEventListener("click", saveOptions);
