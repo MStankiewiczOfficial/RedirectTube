@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
         fetch(`i18n/locales/${lang}.json`)
             .then(response => response.json())
             .then(data => {
-                buttonName = data.ui.contextMenu.redirect;
+                buttonName = data.ui.iframeButton.redirect;
                 browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
                     chrome.tabs.sendMessage(tabs[0].id, {redirecttubeButtonName: buttonName, redirecttubeIframeButton: iframeButton});
                 });

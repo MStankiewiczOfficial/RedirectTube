@@ -12,6 +12,9 @@
         "contextMenu": {
             "redirect": "Open in FreeTube"
         },
+        "iframeButton": {
+            "redirect": "Watch on"
+        },
         "beta": {
             "label": "Beta"
         },
