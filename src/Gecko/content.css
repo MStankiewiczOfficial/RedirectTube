@@ -1,7 +1,8 @@
-.redirecttube-redirection-button {
+.redirecttube-redirection-div {
     position: absolute;
     z-index: 10000;
     height: 47px;
+    align-items: center;
     padding: 0 10px;
     background-color: #171717cc;
     color: #fff;
@@ -10,4 +11,34 @@
     border-radius: 0 2px 2px 0;
     transition: all 0.3s;
     cursor: pointer;
+}
+
+.redirecttube-redirection-open-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0 2px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.redirecttube-redirection-open-button svg {
+    height: 16px;
+    fill: #fff;
+    margin-left: 8px;
+    margin-right: 2px;
+}
+
+.redirecttube-redirection-hide-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 47px;
+    width: 47px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #171717cc;
+    text-decoration: none;
+    transform: translate(184px, -100%);
 }

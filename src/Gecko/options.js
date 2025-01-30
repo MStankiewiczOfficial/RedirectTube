@@ -1,5 +1,5 @@
 var popupBehavior = "showPopup";
-var iframeButton = "iframeButtonNo";
+var iframeButton = "iframeButtonYes";
 var extensionIcon = "color";
 
 function saveOptions(e) {
