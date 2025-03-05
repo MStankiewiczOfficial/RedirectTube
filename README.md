@@ -40,9 +40,6 @@ This method is for developers and advanced users.
 
 ## Usage
 
-> [!WARNING]
-> FreeTube on macOS is currently experiencing a problem that manifests itself as an error when opening links when there is no FreeTube window open. This problem has been reported to the FreeTube developers and we are waiting for a solution.
-
 ### Via button
 
 Click the RedirectTube button in the toolbar to open the current YouTube video in FreeTube.

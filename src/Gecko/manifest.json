@@ -2,7 +2,7 @@
     "name": "RedirectTube",
     "description": "Open YouTube links in FreeTube",
     "author": "Michał Stankiewicz",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "manifest_version": 3,
     "icons": {
         "16": "img/icns/color/allow/16.png",
