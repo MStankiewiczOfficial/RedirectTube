@@ -8,6 +8,10 @@ body {
     margin: 0;
 }
 
+#content {
+    padding-bottom: 64px;
+}
+
 #title {
     width: 100%;
     padding: 0;

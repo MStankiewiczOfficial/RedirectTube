@@ -1,0 +1,66 @@
+{
+    "options": {
+        "extensionIcon": {
+            "label": "Ikon Ekstensi:"
+        },
+        "options": {
+            "title": "Opsi"
+        },
+        "popupBehavior": {
+            "label": "Saat mengklik ikon ekstensi:",
+            "redirect": "Alihkan ke FreeTube",
+            "showPopup": "Tampilkan menu"
+        },
+        "footer": {
+            "kofi": "Jika Anda menyukai ekstensi ini, pertimbangkan <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">belikan aku tea</a> 🍵",
+            "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
+            "affiliation": "RedirectTube tidak berafiliasi dengan FreeTube atau penciptanya.<br>FreeTube dilisensikan di bawah <a href = \"https://github.com/freetubeappp/freetube/blob/master/license\">lisensi freeet </a>.href = \"https://docs.freetubeapp.io/credits/\">pencipta FreeTube </a>."
+        },
+        "iframeButton": {
+            "label": "Tampilkan tombol di iframes:",
+            "yes": "Iya",
+            "no": "Tidak"
+        },
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "ui": {
+        "beta": {
+            "label": "Tidak Stabil"
+        },
+        "createdby": "Dibuat dengan 💓 by <a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michat Stankiewicz</a>",
+        "button": {
+            "opinion": "Berikan Opini kamu",
+            "redirect": "Buka situs ini di FreeTube",
+            "issue": "Laporkan Isu",
+            "options": "Opsi",
+            "suggestion": "Membuat saran"
+        },
+        "error": {
+            "e404": "Tidak dapat membuka halaman ini di FreeTube."
+        },
+        "iframeButton": {
+            "redirect": "Lihat"
+        },
+        "close": "Tutup",
+        "contextMenu": {
+            "redirect": "Buka di FreeTube"
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Pendahuluan"
+        },
+        "usage": {
+            "title": "Penggunaan",
+            "toolbar": "Klik ikon saat Anda berada di halaman video YouTube",
+            "contextMenu": "atau klik kanan di URL video YouTube"
+        }
+    }
+}
