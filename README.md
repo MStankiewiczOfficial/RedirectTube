@@ -1,6 +1,6 @@
 <p align="center">
-   <img src="/assets/banner.png" title="RedirectTube">
-   <a href="https://addons.mozilla.org/pl/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a>
+   <img src="/assets/banner.jpg" title="RedirectTube">
+   <a href="https://addons.mozilla.org/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a>
    <br>
    <img src="https://app.codacy.com/project/badge/Grade/5fbd04d2b238474ca9c21fc62de6ecda"><a href="https://translate.codeberg.org/engage/redirecttube/"><img src="https://translate.codeberg.org/widget/redirecttube/ui/svg-badge.svg"></a>
 </a>
@@ -43,12 +43,12 @@ This method is for developers and advanced users.
 ### Via button
 
 Click the RedirectTube button in the toolbar to open the current YouTube video in FreeTube.
-![](/assets/toolbar.png)
+![](/assets/toolbar.jpg)
 
 ### Via context menu
 
 Right-click a YouTube link and select "Open in FreeTube" to open the video in FreeTube.
-![](/assets/context-menu.png)
+![](/assets/context-menu.jpg)
 
 ## Issues
 
