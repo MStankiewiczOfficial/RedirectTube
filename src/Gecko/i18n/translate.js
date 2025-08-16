@@ -1,4 +1,4 @@
-let langList = ["en", "pl", "nl", "fi", "fr", "id", "it", "lv"]
+let langList = ["en", "pl", "nl", "fi", "fr", "it", "lv"]
 
 let lang = navigator.language.split("-")[0]
 if (!langList.includes(lang)) {
