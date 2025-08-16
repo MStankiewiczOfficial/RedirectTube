@@ -71,4 +71,4 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create ${{ env.RELEASE_TAG }} ./artifacts/unsigned/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-unsigned.xpi ./artifacts/signed/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-signed.xpi --title "${{ env.RELEASE_NAME }}" --notes "Automated release"
+        gh release create ${{ env.RELEASE_TAG }} ./artifacts/unsigned/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-unsigned.xpi ./artifacts/signed/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-signed.xpi --title "${{ env.RELEASE_NAME }}" -F ./release-notes.md
