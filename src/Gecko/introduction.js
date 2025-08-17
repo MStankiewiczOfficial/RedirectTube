@@ -1,3 +1,3 @@
-document.getElementById("close").addEventListener("click", function() {
+document.getElementById("close").addEventListener("click", function () {
     window.close();
 });
