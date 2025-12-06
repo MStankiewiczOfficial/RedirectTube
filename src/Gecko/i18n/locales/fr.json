@@ -14,6 +14,8 @@
         "error": {
             "e404": "Impossible d'ouvrir cette page dans FreeTube."
         },
+        "yes": "Oui",
+        "no": "Non",
         "iframeButton": {
             "redirect": "Regarder sur"
         },
@@ -24,7 +26,7 @@
     },
     "options": {
         "extensionIcon": {
-            "label": "Icône de l'extension :"
+            "label": "Icône de l'extension"
         },
         "footer": {
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
@@ -32,17 +34,18 @@
             "affiliation": "RedirectTube n'est pas affilié avec FreeTube ou ses créateurs.<br>FreeTube est sous licence <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0</a>.<br>Le nom \"FreeTube\" et le logo FreeTube sont la propriété des <a href=\"https://docs.freetubeapp.io/credits/\">créateurs de FreeTube</a>."
         },
         "iframeButton": {
-            "label": "Afficher le bouton dans les iframes :",
-            "yes": "Oui",
-            "no": "Non"
+            "label": "Afficher le bouton dans les iframes"
         },
         "options": {
             "title": "Options"
         },
         "popupBehavior": {
-            "label": "Lorsque vous cliquez sur l'icône de l'extension :",
+            "label": "Lorsque vous cliquez sur l'icône de l'extension",
             "redirect": "Rediriger vers FreeTube",
             "showPopup": "Afficher le menu"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
         },
         "page": {
             "title": "RedirectTube"

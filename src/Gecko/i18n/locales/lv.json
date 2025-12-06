@@ -1,15 +1,18 @@
 {
     "options": {
         "extensionIcon": {
-            "label": "Paplašinājuma ikona:"
+            "label": "Paplašinājuma ikona"
         },
         "options": {
             "title": "Iestatījumi"
         },
         "popupBehavior": {
-            "label": "Kad noklikšķina paplašinājuma ikonu:",
+            "label": "Kad noklikšķina paplašinājuma ikonu",
             "showPopup": "Rādīt izvēlni",
             "redirect": "Pārvirzīt uz FreeTube"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
         },
         "footer": {
             "kofi": "Ja jums patīk šis paplašinājums, apsveriet iespēju <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">uzcienāt mani ar tēju</a> 🍵",
@@ -17,9 +20,7 @@
             "affiliation": "RedirectTube nav saistīts ar FreeTube vai tā izstrādātājiem.<br>FreeTube ir licencēts saskaņā ar <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0 licenci</a>.<br>Nosaukums \"FreeTube\" un FreeTube logotips ir <a href=\"https://docs.freetubeapp.io/credits/\">FreeTube izstrādātāju</a> īpašums."
         },
         "iframeButton": {
-            "label": "Rādīt pogu iframe ietvaros:",
-            "no": "Nē",
-            "yes": "Jā"
+            "label": "Rādīt pogu iframe ietvaros"
         },
         "page": {
             "title": "RedirectTube"
@@ -40,6 +41,8 @@
         "error": {
             "e404": "Nevar atvērt šo lapu FreeTube."
         },
+        "yes": "Jā",
+        "no": "Nē",
         "iframeButton": {
             "redirect": "Skatīties uz"
         },

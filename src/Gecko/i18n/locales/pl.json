@@ -12,6 +12,8 @@
         "contextMenu": {
             "redirect": "Otwórz we FreeTube"
         },
+        "yes": "Tak",
+        "no": "Nie",
         "iframeButton": {
             "redirect": "Obejrzyj na"
         },
@@ -40,17 +42,18 @@
             "title": "Opcje"
         },
         "popupBehavior": {
-            "label": "Po kliknięciu ikony rozszerzenia:",
+            "label": "Po kliknięciu ikony rozszerzenia",
             "showPopup": "Pokaż menu",
             "redirect": "Przekieruj do FreeTube"
         },
+        "autoRedirectLinks": {
+            "label": "Automatycznie przekierowuj linki YouTube po kliknięciu"
+        },
         "iframeButton": {
-            "label": "Pokaż przycisk w ramkach iframe:",
-            "yes": "Tak",
-            "no": "Nie"
+            "label": "Pokaż przycisk w ramkach iframe"
         },
         "extensionIcon": {
-            "label": "Ikona rozszerzenia:"
+            "label": "Ikona rozszerzenia"
         },
         "footer": {
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",

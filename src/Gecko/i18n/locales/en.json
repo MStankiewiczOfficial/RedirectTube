@@ -12,6 +12,8 @@
         "contextMenu": {
             "redirect": "Open in FreeTube"
         },
+        "yes": "Yes",
+        "no": "No",
         "iframeButton": {
             "redirect": "Watch on"
         },
@@ -40,17 +42,18 @@
             "title": "Options"
         },
         "popupBehavior": {
-            "label": "When clicking the extension icon:",
+            "label": "When clicking the extension icon",
             "showPopup": "Show menu",
             "redirect": "Redirect to FreeTube"
         },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
+        },
         "iframeButton": {
-            "label": "Show button in iframes:",
-            "yes": "Yes",
-            "no": "No"
+            "label": "Show button in iframes"
         },
         "extensionIcon": {
-            "label": "Extension icon:"
+            "label": "Extension icon"
         },
         "footer": {
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",

@@ -85,7 +85,7 @@
     <div id="content">
         <h1 data-i18n="options.options.title">Options</h1>
         <div class="section">
-            <label for="popupBehavior" data-i18n="options.popupBehavior.label">When clicking the extension icon:</label>
+            <label for="popupBehavior" data-i18n="options.popupBehavior.label">When clicking the extension icon</label>
             <select name="popupBehavior" id="popupBehavior">
                 <option value="showPopup" data-i18n="options.popupBehavior.showPopup">Show menu</option>
                 <option value="redirect" data-i18n="options.popupBehavior.redirect">Redirect to FreeTube</option>
@@ -93,10 +93,18 @@
         </div>
         <br>
         <div class="section">
-            <label for="iframeButton" data-i18n="options.iframeButton.label">Show button in iframes:</label><span class="beta-label" data-i18n="ui.beta.label">Beta</span>
+            <label for="autoRedirectLinks" data-i18n="options.autoRedirectLinks.label">Automatically redirect YouTube links when clicked</label><span class="beta-label" data-i18n="ui.beta.label">Beta</span>
+            <select name="autoRedirectLinks" id="autoRedirectLinks">
+                <option value="autoRedirectLinksNo" data-i18n="ui.no">No</option>
+                <option value="autoRedirectLinksYes" data-i18n="ui.yes">Yes</option>
+            </select>
+        </div>
+        <br>
+        <div class="section">
+            <label for="iframeButton" data-i18n="options.iframeButton.label">Show button in iframes</label><span class="beta-label" data-i18n="ui.beta.label">Beta</span>
             <select name="iframeButton" id="iframeButton">
-                <option value="iframeButtonNo" data-i18n="options.iframeButton.no">No</option>
-                <option value="iframeButtonYes" data-i18n="options.iframeButton.yes">Yes</option>
+                <option value="iframeButtonNo" data-i18n="ui.no">No</option>
+                <option value="iframeButtonYes" data-i18n="ui.yes">Yes</option>
             </select>
         </div>
         <br>

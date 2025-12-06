@@ -1,30 +1,14 @@
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
     detectYT(changeInfo);
     createContextMenu();
-    chrome.storage.local.get(["lang", "iframeButton"], function (result) {
-        lang = result.lang;
-        iframeButton = result.iframeButton;
-        fetch(`i18n/locales/${lang}.json`)
-            .then((response) => response.json())
-            .then((data) => {
-                buttonName = data.ui.iframeButton.redirect;
-                browser.tabs.query(
-                    { active: true, currentWindow: true },
-                    (tabs) => {
-                        chrome.tabs.sendMessage(tabs[0].id, {
-                            redirecttubeButtonName: buttonName,
-                            redirecttubeIframeButton: iframeButton,
-                        });
-                    }
-                );
-            });
-    });
+    updateContentScriptSettings();
 });
 
 chrome.tabs.onActivated.addListener(function (activeInfo) {
     chrome.tabs.get(activeInfo.tabId, function (tab) {
         detectYT(tab);
         createContextMenu();
+        updateContentScriptSettings();
     });
 });
 
@@ -33,16 +17,26 @@ window
     .addEventListener("change", (e) => {
         detectYTInThisTab();
         createContextMenu();
+        updateContentScriptSettings();
     });
 
 browser.runtime.onInstalled.addListener(() => {
     detectYTInThisTab();
     createContextMenu();
+    updateContentScriptSettings();
 });
 
-chrome.runtime.onMessage.addListener(function (request) {
+chrome.runtime.onMessage.addListener(function (request, sender) {
     if (request.message === "detectYT") {
         detectYTInThisTab();
+        updateContentScriptSettings();
+    }
+
+    if (request.message === "autoRedirectLink" && sender.tab && request.url) {
+        if (!request.url.startsWith("freetube://")) {
+            const newUrl = "freetube://" + request.url;
+            chrome.tabs.update(sender.tab.id, { url: newUrl });
+        }
     }
 });
 
@@ -112,6 +106,44 @@ function detectYT(changeInfo) {
     }
 }
 
+function updateContentScriptSettings() {
+    chrome.storage.local.get(
+        ["lang", "iframeButton", "autoRedirectLinks"],
+        function (result) {
+            const selectedLang = result.lang || "en";
+            const iframeButtonSetting =
+                result.iframeButton || "iframeButtonYes";
+            const autoRedirectSetting =
+                result.autoRedirectLinks || "autoRedirectLinksNo";
+            fetch(`i18n/locales/${selectedLang}.json`)
+                .then((response) => response.json())
+                .then((data) => {
+                    const buttonName = data.ui.iframeButton.redirect;
+                    browser.tabs.query(
+                        { active: true, currentWindow: true },
+                        (tabs) => {
+                            if (!tabs || !tabs.length) {
+                                return;
+                            }
+                            chrome.tabs.sendMessage(
+                                tabs[0].id,
+                                {
+                                    redirecttubeButtonName: buttonName,
+                                    redirecttubeIframeButton:
+                                        iframeButtonSetting,
+                                    redirecttubeAutoRedirect:
+                                        autoRedirectSetting,
+                                },
+                                () => chrome.runtime.lastError
+                            );
+                        }
+                    );
+                })
+                .catch(() => {});
+        }
+    );
+}
+
 chrome.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === "openInFreeTube" && info.linkUrl) {
         let newUrl = "freetube://" + info.linkUrl;
@@ -124,6 +156,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
         chrome.tabs.create({ url: "introduction.html" });
         browser.storage.local.set({
             extensionIcon: "color",
+            autoRedirectLinks: "autoRedirectLinksNo",
         });
     }
 });

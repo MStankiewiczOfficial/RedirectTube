@@ -15,6 +15,8 @@
         "error": {
             "e404": "Impossibile aprire questa pagina in FreeTube."
         },
+        "yes": "Sì",
+        "no": "No",
         "iframeButton": {
             "redirect": "Guarda su"
         },
@@ -37,12 +39,15 @@
             "title": "Opzioni"
         },
         "popupBehavior": {
-            "label": "Quando si clicca sull'icona dell'estensione:",
+            "label": "Quando si clicca sull'icona dell'estensione",
             "redirect": "Reindirizza a FreeTube",
             "showPopup": "Mostra menu"
         },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
+        },
         "extensionIcon": {
-            "label": "Icona dell'estensione:"
+            "label": "Icona dell'estensione"
         },
         "footer": {
             "kofi": "Se vi piace questa estensione, pensate a <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">comprarmi un tè</a> 🍵",
@@ -53,9 +58,7 @@
             "title": "RedirectTube"
         },
         "iframeButton": {
-            "yes": "Sì",
-            "label": "Mostra il pulsante in iframes:",
-            "no": "No"
+            "label": "Mostra il pulsante in iframes:"
         }
     },
     "popup": {

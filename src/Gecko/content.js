@@ -1,3 +1,16 @@
+let redirecttubeAutoRedirect = "autoRedirectLinksNo";
+let isTopLevelDocument = false;
+
+try {
+    isTopLevelDocument = window.top === window;
+} catch (error) {
+    isTopLevelDocument = true;
+}
+
+if (isTopLevelDocument) {
+    document.addEventListener("click", handleDocumentClick, true);
+}
+
 function addDivIframe(iframe, buttonName) {
     if (!iframe || iframe.dataset.buttonAdded === "true") return;
     iframe.dataset.buttonAdded = "true";
@@ -50,14 +63,109 @@ function processIframes(buttonName) {
 }
 
 chrome.runtime.onMessage.addListener((request) => {
-    if (request.redirecttubeIframeButton !== "iframeButtonNo") {
-        processIframes(request.redirecttubeButtonName);
+    const iframePreference =
+        request.redirecttubeIframeButton || "iframeButtonYes";
+    const buttonName =
+        request.redirecttubeButtonName ||
+        localStorage.getItem("redirecttubeButtonName");
+
+    if (iframePreference !== "iframeButtonNo" && buttonName) {
+        processIframes(buttonName);
     }
-    localStorage.setItem(
-        "redirecttubeButtonName",
-        request.redirecttubeButtonName
-    );
+
+    if (request.redirecttubeButtonName) {
+        localStorage.setItem(
+            "redirecttubeButtonName",
+            request.redirecttubeButtonName
+        );
+    }
+
+    redirecttubeAutoRedirect =
+        request.redirecttubeAutoRedirect || "autoRedirectLinksNo";
 });
+
+function handleDocumentClick(event) {
+    if (redirecttubeAutoRedirect !== "autoRedirectLinksYes") {
+        return;
+    }
+    if (event.defaultPrevented || event.button !== 0) {
+        return;
+    }
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+    }
+
+    const anchor = event.target.closest("a[href]");
+    if (!anchor) {
+        return;
+    }
+
+    if (anchor.hasAttribute("download")) {
+        return;
+    }
+
+    const targetAttribute =
+        (anchor.getAttribute("target") || "").toLowerCase();
+    if (targetAttribute &&
+        targetAttribute !== "_self" &&
+        targetAttribute !== "_top" &&
+        targetAttribute !== "_parent") {
+        return;
+    }
+
+    const resolvedUrl = resolveAbsoluteUrl(anchor.getAttribute("href"));
+    if (!resolvedUrl || !shouldRedirectUrl(resolvedUrl)) {
+        return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    chrome.runtime.sendMessage({
+        message: "autoRedirectLink",
+        url: resolvedUrl,
+    });
+}
+
+function resolveAbsoluteUrl(href) {
+    if (!href) {
+        return null;
+    }
+    try {
+        return new URL(href, window.location.href).toString();
+    } catch (error) {
+        return null;
+    }
+}
+
+function shouldRedirectUrl(url) {
+    try {
+        const parsedUrl = new URL(url);
+        const host = parsedUrl.hostname.toLowerCase();
+
+        if (host === "youtu.be") {
+            return parsedUrl.pathname.length > 1;
+        }
+
+        if (host.endsWith("youtube.com")) {
+            if (parsedUrl.pathname.startsWith("/watch") && parsedUrl.searchParams.has("v")) {
+                return true;
+            }
+            if (parsedUrl.pathname.startsWith("/playlist") && parsedUrl.searchParams.has("list")) {
+                return true;
+            }
+            if (parsedUrl.pathname.startsWith("/@")) {
+                return true;
+            }
+            if (parsedUrl.pathname.startsWith("/channel/")) {
+                return true;
+            }
+        }
+    } catch (error) {
+        return false;
+    }
+
+    return false;
+}
 
 function redirecttubeOpenInFreeTube(src) {
     let newUrl = "freetube://" + src;

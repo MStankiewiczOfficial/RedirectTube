@@ -1,15 +1,18 @@
 {
     "options": {
         "extensionIcon": {
-            "label": "Add-onpictogram:"
+            "label": "Add-onpictogram"
         },
         "options": {
             "title": "Instellingen"
         },
         "popupBehavior": {
-            "label": "Na aanklikken van add-onpictogram:",
+            "label": "Na aanklikken van add-onpictogram",
             "redirect": "Doorverwijzen naar FreeTube",
             "showPopup": "Menu openen"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
         },
         "footer": {
             "kofi": "Als je deze add-on graag gebruikt, overweg dan <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">een donatie (bijv. een kopje thee)</a> 🍵",
@@ -17,9 +20,7 @@
             "affiliation": "RedirectTube is niet verbonden aan FreeTube of de makers ervan.<br>FreeTube wordt uitgebracht onder de voorwaarden van de <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0-licentie</a>.<br>De naam ‘FreeTube’ en het FreeTube-logo zijn eigendom van de <a href=\"https://docs.freetubeapp.io/credits/\">makers van FreeTube</a>."
         },
         "iframeButton": {
-            "label": "Knop op iframes tonen:",
-            "yes": "Ja",
-            "no": "Nee"
+            "label": "Knop op iframes tonen"
         },
         "page": {
             "title": "RedirectTube"
@@ -40,6 +41,8 @@
         "error": {
             "e404": "Deze pagina kan niet worden geopend in FreeTube."
         },
+        "yes": "Ja",
+        "no": "Nee",
         "iframeButton": {
             "redirect": "Bekijken op"
         },

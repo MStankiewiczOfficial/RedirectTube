@@ -1,15 +1,18 @@
 {
     "options": {
         "extensionIcon": {
-            "label": "Laajennuskuvake:"
+            "label": "Laajennuskuvake"
         },
         "options": {
             "title": "Vaihtoehdot"
         },
         "popupBehavior": {
-            "label": "Kun napsautat laajennuskuvaketta:",
+            "label": "Kun napsautat laajennuskuvaketta",
             "redirect": "Uudelleenohjaa FreeTubeen",
             "showPopup": "Näytä valikko"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
         },
         "footer": {
             "kofi": "Jos pidät tästä laajennuksesta, harkitse <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">teen ostamista minulle</a> 🍵",
@@ -17,9 +20,7 @@
             "affiliation": "RedirectTube ei ole sidoksissa FreeTubeen tai sen luojiin.<br>FreeTube on lisensoitu <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0-lisenssillä</a>.<br>Nimi \"FreeTube\" ja FreeTube-logo ovat <a href=\"https://docs.freetubeapp.io/credits/\">FreeTuben luojien</a> omaisuutta."
         },
         "iframeButton": {
-            "label": "Näytä painike iframe-kehyksissä:",
-            "yes": "Kyllä",
-            "no": "Ei"
+            "label": "Näytä painike iframe-kehyksissä"
         },
         "page": {
             "title": "RedirectTube"
@@ -40,6 +41,8 @@
         "error": {
             "e404": "Tätä sivua ei voi avata FreeTubessa."
         },
+        "yes": "Kyllä",
+        "no": "Ei",
         "iframeButton": {
             "redirect": "Katso"
         },

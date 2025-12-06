@@ -1,4 +1,5 @@
 var popupBehavior = "showPopup";
+var autoRedirectLinks = "autoRedirectLinksNo";
 var iframeButton = "iframeButtonYes";
 var extensionIcon = "color";
 
@@ -7,6 +8,7 @@ function saveOptions(e) {
         e.preventDefault();
         browser.storage.local.set({
             popupBehavior: document.getElementById("popupBehavior").value,
+            autoRedirectLinks: document.getElementById("autoRedirectLinks").value,
             iframeButton: document.getElementById("iframeButton").value,
             extensionIcon: document.querySelector(
                 'input[name="extensionIcon"]:checked'
@@ -20,6 +22,8 @@ function restoreOptions() {
     function setCurrentChoice(result) {
         document.getElementById("popupBehavior").value =
             result.popupBehavior || popupBehavior;
+        document.getElementById("autoRedirectLinks").value =
+            result.autoRedirectLinks || autoRedirectLinks;
         document.getElementById("iframeButton").value =
             result.iframeButton || iframeButton;
         document.querySelector(
@@ -35,6 +39,7 @@ function restoreOptions() {
 
     var getting = browser.storage.local.get([
         "popupBehavior",
+        "autoRedirectLinks",
         "iframeButton",
         "extensionIcon",
     ]);
@@ -67,6 +72,9 @@ setTimeout(() => {
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document
     .querySelector("#popupBehavior")
+    .addEventListener("change", saveOptions);
+document
+    .querySelector("#autoRedirectLinks")
     .addEventListener("change", saveOptions);
 document.querySelector("#iframeButton").addEventListener("change", saveOptions);
 document.querySelector("#colorIcon").addEventListener("click", saveOptions);
