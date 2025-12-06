@@ -59,6 +59,10 @@ jobs:
       run: |
         mv ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi
 
+    - name: Build Chromium unsigned ZIP
+      run: |
+        (cd src/Chromium && zip -r ../../artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip .)
+
     - name: Sign XPI
       env:
         WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
@@ -71,4 +75,4 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create ${{ env.RELEASE_TAG }} ./artifacts/unsigned/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-unsigned.xpi ./artifacts/signed/${{ env.EXT_NAME }}-${{ env.EXT_VERSION }}-gecko-signed.xpi --title "${{ env.RELEASE_NAME }}" -F ./release-notes.md
+        gh release create "$RELEASE_TAG" ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi --title "$RELEASE_NAME" -F ./release-notes.md

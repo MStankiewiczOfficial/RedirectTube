@@ -1,0 +1,69 @@
+{
+    "ui": {
+        "close": "Zamknij",
+        "createdby": "Stworzone z ❤️ przez <a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michała Stankiewicza</a>",
+        "button": {
+            "redirect": "Otwórz tę stronę we FreeTube",
+            "options": "Opcje",
+            "opinion": "Wyraź opinię",
+            "suggestion": "Napisz sugestię",
+            "issue": "Zgłoś problem"
+        },
+        "contextMenu": {
+            "redirect": "Otwórz we FreeTube"
+        },
+        "yes": "Tak",
+        "no": "Nie",
+        "iframeButton": {
+            "redirect": "Obejrzyj na"
+        },
+        "beta": {
+            "label": "Beta"
+        },
+        "error": {
+            "e404": "Nie można otworzyć tej strony we FreeTube."
+        }
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Wprowadzenie"
+        },
+        "usage": {
+            "title": "Korzystanie",
+            "toolbar": "Kliknij ikonę, gdy jesteś na stronie z filmem na YouTube",
+            "contextMenu": "lub kliknij prawym przyciskiem link do filmu na YouTube"
+        }
+    },
+    "options": {
+        "page": {
+            "title": "RedirectTube"
+        },
+        "options": {
+            "title": "Opcje"
+        },
+        "popupBehavior": {
+            "label": "Po kliknięciu ikony rozszerzenia",
+            "showPopup": "Pokaż menu",
+            "redirect": "Przekieruj do FreeTube"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatycznie przekierowuj linki YouTube po kliknięciu"
+        },
+        "iframeButton": {
+            "label": "Pokaż przycisk w ramkach iframe"
+        },
+        "extensionIcon": {
+            "label": "Ikona rozszerzenia"
+        },
+        "footer": {
+            "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
+            "kofi": "Jeśli podoba Ci się to rozszerzenie, rozważ <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">postawienie mi herbaty</a> 🍵",
+            "affiliation": "RedirectTube nie jest powiązany z FreeTube ani jego twórcami. FreeTube jest licencjonowany na <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">licencji AGPL-3.0</a>. Nazwa \"FreeTube\" oraz logo FreeTube są własnością <a href=\"https://docs.freetubeapp.io/credits/\">twórców FreeTube</a>."
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    }
+}

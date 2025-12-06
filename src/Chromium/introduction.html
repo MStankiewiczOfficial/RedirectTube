@@ -4,13 +4,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title data-i18n="options.page.title">RedirectTube</title>
-        <link rel="stylesheet" href="options.css">
+        <title data-i18n="introduction.page.title">RedirectTube • Introduction</title>
+        <link rel="icon" href="img/icns/color/allow/32.png" type="image/png">
+        <link rel="stylesheet" href="introduction.css">
     </head>
 </head>
 <body>
     <div id="title">
-        <svg class="logo" width="192px" viewBox="0 0 861 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <svg class="logo" width="192px" height="auto" viewBox="0 0 861 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
             <g transform="matrix(4.63167,0,0,4.63167,-55.5801,-55.5801)">
                 <path d="M14.75,12C13.226,12 12,13.274 12,14.857L12,44.857C12,49.143 17.5,52 20.25,52L23,52L23,14.857C23,13.274 21.773,12 20.25,12L14.75,12Z" style="fill:#fff;"/>
             </g>
@@ -83,74 +84,22 @@
         </div>
     </div>
     <div id="content">
-        <h1 data-i18n="options.options.title">Options</h1>
         <div class="section">
-            <div class="section-label">
-                <label for="popupBehavior" data-i18n="options.popupBehavior.label">When clicking the extension icon</label>
+            <h1 data-i18n="introduction.usage.title">Usage</h1>
+            <div class="images">
+                <div class="image">
+                    <h2 data-i18n="introduction.usage.toolbar">Click the icon when you are on a YouTube video page</h2>
+                    <img src="img/toolbar-transparent.png" alt="Toolbar">
+                </div>
+                <div class="image">
+                    <h2 data-i18n="introduction.usage.contextMenu">or right-click on the url of a YouTube video</h2>
+                    <img src="img/context-menu-transparent.png" alt="RedirectTube">
+                </div>
             </div>
-            <select name="popupBehavior" id="popupBehavior">
-                <option value="showPopup" data-i18n="options.popupBehavior.showPopup">Show menu</option>
-                <option value="redirect" data-i18n="options.popupBehavior.redirect">Redirect to FreeTube</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <div class="section-label">
-                <label for="autoRedirectLinks" data-i18n="options.autoRedirectLinks.label">Automatically redirect YouTube links when clicked</label>
-                <span class="beta-label" data-i18n="ui.beta.label">Beta</span>
-            </div>
-            <select name="autoRedirectLinks" id="autoRedirectLinks">
-                <option value="autoRedirectLinksNo" data-i18n="ui.no">No</option>
-                <option value="autoRedirectLinksYes" data-i18n="ui.yes">Yes</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <div class="section-label">
-                <label for="iframeButton" data-i18n="options.iframeButton.label">Show button in iframes</label>
-                <span class="beta-label" data-i18n="ui.beta.label">Beta</span>
-            </div>
-            <select name="iframeButton" id="iframeButton">
-                <option value="iframeButtonNo" data-i18n="ui.no">No</option>
-                <option value="iframeButtonYes" data-i18n="ui.yes">Yes</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <label for="extensionIcon" data-i18n="options.extensionIcon.label">Extension icon:</label>
-            <div class="extension-icons-list">
-                <label class="extension-icon">
-                    <input type="radio" name="extensionIcon" value="color" id="colorIcon">
-                    <div class="extension-icons">
-                        <img src="img/icns/color/example.png" alt="Color icons">
-                    </div>
-                </label>
-                <label class="extension-icon">
-                    <input type="radio" name="extensionIcon" value="mono" id="monoIcon">
-                    <div class="extension-icons">
-                        <img src="img/icns/mono/black/example.png" class="browser-light" alt="Mono icons">
-                        <img src="img/icns/mono/white/example.png" class="browser-dark" alt="Mono icons">
-                    </div>
-                </label>
-            </div>
-        </div>
-        <br>
-        <div class="section">
-            <button id="opinionButton" data-i18n="ui.button.opinion">Give your opinion</button>
-            <button id="suggestionButton" data-i18n="ui.button.suggestion">Make a suggestion</button>
-            <button id="issueButton" data-i18n="ui.button.issue">Report an issue</button>
+            <button id="close" data-i18n="ui.close">Close</button>
         </div>
     </div>
-    <br>
-    <footer>
-        <p data-i18n="options.footer.version">RedirectTube v<span id="version">X.Y.Z</span></p>
-        <p data-i18n="ui.createdby">Created with ❤️ by <a href="https://www.stankiewiczm.eu" target="_blank">Michał Stankiewicz</a></p>
-        <p><a href="https://github.com/MStankiewiczOfficial/RedirectTube/blob/main/LICENSE.md">CC BY-NC-SA 4.0</a></p>
-        <p data-i18n="options.footer.kofi">If you like this extension, consider <a href="https://ko-fi.com/mstankiewicz" target="_blank">buying me a tea</a> 🍵</p>
-        <hr>
-        <p data-i18n="options.footer.affiliation">RedirectTube is not affiliated with FreeTube or its creators.<br>FreeTube is licensed under the <a href="https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE">AGPL-3.0 licence</a>.<br>The name "FreeTube" and FreeTube logo are the property of the <a href="https://docs.freetubeapp.io/credits/">creators of FreeTube</a>.</p>
-    </footer>
     <script src="i18n/translate.js"></script>
-    <script src="options.js"></script>
+    <script src="introduction.js"></script>
 </body>
 </html>

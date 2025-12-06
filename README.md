@@ -8,24 +8,26 @@
 
 ## Open YouTube links in FreeTube
 
-RedirectTube is a browser extension that redirects YouTube links to FreeTube. It is available for Firefox.
+RedirectTube is a browser extension that redirects YouTube links to FreeTube. It is available for Firefox and Chromium-based browsers (Chromium builds are distributed unsigned).
 
 ## Installation
 
-### Method 1: Firefox Add-ons (recommended)
+### Mozilla Firefox
+
+#### Method 1: Firefox Add-ons (recommended)
 
 You can install RedirectTube from the Firefox Add-ons.
 
 [![Get the Add-on](https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png)](https://addons.mozilla.org/pl/firefox/addon/redirecttube/)
 
-### Method 2: Manual installation
+#### Method 2: Manual Firefox installation
 
 1. Download the latest release of RedirectTube (file that ends with `-signed.xpi`) from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/). If you see an alert about installing add-ons from untrusted sources, click "Continue installation" and don’t proceed with the next steps.
 2. Open the downloaded file in Firefox.
 3. Click "Add" to install the extension.
    And that's it! RedirectTube is now installed in your browser.
 
-### Method 3: Developer mode
+#### Method 3: Firefox developer mode
 
 This method is for developers and advanced users.
 
@@ -37,6 +39,20 @@ This method is for developers and advanced users.
 3. Click "Load Temporary Add-on".
 4. Select the `manifest.json` file from the cloned repository (it's in the `src` directory).
    The extension is now installed in your browser.
+
+### Chromium-based browsers (unsigned)
+
+The Chromium package supports Chrome, Chromium, Edge, Brave, Vivaldi, and other Chromium-based browsers.
+
+> [!NOTE]
+> The Chromium build is unsigned and must be reloaded manually whenever you download a new release.
+
+1. Download the latest release archive that ends with `-chromium-unsigned.zip` from the [releases page](https://github.com/MStankiewiczOfficial/RedirectTube/releases/).
+2. Extract the ZIP file to a directory you want to keep (the browser needs to access the extracted files).
+3. Open `chrome://extensions` (or the equivalent extensions page in your Chromium browser).
+4. Enable **Developer mode**.
+5. Click **Load unpacked** and select the directory you extracted in step 2.
+   The extension will appear in the toolbar once the folder is loaded.
 
 ## Usage
 
