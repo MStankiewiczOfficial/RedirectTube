@@ -15,9 +15,7 @@
         "512": "img/icns/color/allow/512.png"
     },
     "background": {
-        "scripts": [
-            "background.js"
-        ]
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -50,11 +48,5 @@
     "host_permissions": [
         "http://*/*",
         "https://*/*"
-    ],
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "redirecttube@stankiewiczm.eu",
-            "strict_min_version": "109.0"
-        }
-    }
+    ]
 }

@@ -1,0 +1,122 @@
+@import url('colors.css');
+
+body {
+    background-color: var(--background);
+    color: var(--color);
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#content {
+    padding-bottom: 64px;
+}
+
+#title {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    background-color: #cb1314;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+}
+
+h1 {
+    margin-top: 1em;
+    margin-left: 32px;
+    font-size: 1.7em;
+}
+
+a {
+    color: var(--url);
+}
+
+a:hover {
+    color: var(--url-hover);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.75em 32px;
+}
+
+.socials {
+    display: flex;
+    position: fixed;
+    align-items: flex-end;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.social-title {
+    display: none;
+    color: #ffffff;
+    margin-right: 6px;
+}
+
+.social-logo {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s;
+    fill: #ffffffd0;
+}
+.social-logo:hover {
+    fill: #ffffff;
+}
+
+button {
+    padding: 0.5em 1em;
+    margin: 2px;
+    border: #79797979 solid 1px;
+    border-radius: 4px;
+    background-color: #79797979;
+    color: var(--color);
+    font-size: 0.9em;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #797979b9;
+}
+
+button:disabled {
+    background-color: #79797979;
+    color: #79797979;
+    cursor: not-allowed;
+}
+
+img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0.75em 32px;
+}
+
+.image {
+    text-align: center;
+    transition: all 0.3s;
+}

@@ -1,10 +1,11 @@
-# 1.10.0 (25083)
+# 1.11.0 (25121)
 
 ## Release Notes
 
-- Added support for redirection from channels and playlists.
-- Added a link to the license in the options.
-- Fixed a bug that caused the extension icon to display an incorrect status.
+- Added an unsigned build for Chromium-based browsers that can be loaded via Developer Mode.
+- Introduced auto-redirect support so YouTube URLs open in FreeTube without manual interaction.
+- Clarified Firefox manual and developer-mode installation steps in the README.
+- Automated the release workflow to bundle both signed Firefox XPIs and unsigned Chromium ZIPs.
 
 > [!WARNING]
-> File `-unsigned.xpi` will most likely not work in your browser. Use the signed version (`-signed.xpi`) or download from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/redirecttube/).
+> For Firefox, the `-unsigned.xpi` artifact will most likely not install. Use the signed version (`-signed.xpi`) or download from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/redirecttube/). For Chromium-based browsers, download the `-chromium-unsigned.zip` and load it unpacked in Developer Mode.

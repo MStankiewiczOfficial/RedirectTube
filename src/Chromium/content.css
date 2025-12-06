@@ -1,0 +1,44 @@
+.redirecttube-redirection-div {
+    position: absolute;
+    z-index: 10000;
+    height: 47px !important;
+    align-items: center !important;
+    padding: 0 10px;
+    background-color: #171717cc !important;
+    color: #fff !important;
+    font: 400 16px/16px "YouTube Noto",Roboto,Arial,Helvetica,sans-serif !important;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.redirecttube-redirection-open-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    margin: 0 2px !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.redirecttube-redirection-open-button svg {
+    height: 16px !important;
+    fill: #fff !important;
+    margin-left: 8px !important;
+    margin-right: 2px !important;
+}
+
+.redirecttube-redirection-hide-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 47px !important;
+    width: 47px !important;
+    margin: 0 2px !important;
+    color: #fff !important;
+    background-color: #171717cc !important;
+    text-decoration: none !important;
+    transform: translate(184px, -100%) !important;
+}
