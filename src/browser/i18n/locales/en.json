@@ -1,0 +1,89 @@
+{
+    "ui": {
+        "close": "Close",
+        "createdby": "Created with ❤️ by <a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michał Stankiewicz</a>",
+        "button": {
+            "redirect": "Open this site in FreeTube",
+            "options": "Options",
+            "opinion": "Give your opinion",
+            "suggestion": "Make a suggestion",
+            "issue": "Report an issue"
+        },
+        "contextMenu": {
+            "redirect": "Open in FreeTube"
+        },
+        "yes": "Yes",
+        "no": "No",
+        "iframeButton": {
+            "redirect": "Watch on"
+        },
+        "beta": {
+            "label": "Beta"
+        },
+        "error": {
+            "e404": "Cannot open this page in FreeTube."
+        }
+    },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Open YouTube links in FreeTube"
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Introduction"
+        },
+        "usage": {
+            "title": "Usage",
+            "toolbar": "Click the icon when you are on a YouTube video page",
+            "contextMenu": "or right-click on the url of a YouTube video"
+        }
+    },
+    "options": {
+        "page": {
+            "title": "RedirectTube"
+        },
+        "options": {
+            "title": "Options"
+        },
+        "popupBehavior": {
+            "label": "When clicking the extension icon",
+            "showPopup": "Show menu",
+            "redirect": "Redirect to FreeTube"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
+        },
+        "iframeBehavior": {
+            "label": "iFrame behavior",
+            "none": "Nothing",
+            "replace": "Replace"
+        },
+        "extensionIcon": {
+            "label": "Extension icon"
+        },
+        "footer": {
+            "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
+            "kofi": "If you like this extension, consider <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">buying me a tea</a> 🍵",
+            "affiliation": "RedirectTube is not affiliated with FreeTube or its creators.<br>FreeTube is licensed under the <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0 licence</a>.<br>The name \"FreeTube\" and FreeTube logo are the property of the <a href=\"https://docs.freetubeapp.io/credits/\">creators of FreeTube</a>."
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Embed Choice"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Unable to read the original video URL. Please reload the page."
+    }
+}

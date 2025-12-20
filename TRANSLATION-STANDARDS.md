@@ -1,4 +1,3 @@
-
 # Translation Standards for RedirectTube
 
 All translations for RedirectTube are managed via the Codeberg platform: https://translate.codeberg.org/projects/redirecttube
@@ -16,6 +15,9 @@ All translations for RedirectTube are managed via the Codeberg platform: https:/
 - Translations below 85% completion will not be included in the public release of the extension.
 - Each translation should be reviewed for linguistic and technical accuracy.
 
+## Translation Maintenance Policy
+- Translations that remain below 85% completion for three consecutive versions or for at least one month (whichever is longer) will be removed from the extension. This does not affect their availability on the Codeberg platform.
+- Removed translations can be reintroduced once they meet the 85% completion requirement and pass the review process.
 
 ## Platform
 - All translations must be submitted and managed via the Codeberg platform: https://translate.codeberg.org/projects/redirecttube

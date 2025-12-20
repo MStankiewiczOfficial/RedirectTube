@@ -1,0 +1,89 @@
+{
+    "options": {
+        "extensionIcon": {
+            "label": "Laajennuskuvake"
+        },
+        "options": {
+            "title": "Vaihtoehdot"
+        },
+        "popupBehavior": {
+            "label": "Kun napsautat laajennuskuvaketta",
+            "redirect": "Uudelleenohjaa FreeTubeen",
+            "showPopup": "Näytä valikko"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
+        },
+        "iframeBehavior": {
+            "label": "iFrame behavior",
+            "none": "Nothing",
+            "replace": "Replace"
+        },
+        "footer": {
+            "kofi": "Jos pidät tästä laajennuksesta, harkitse <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">teen ostamista minulle</a> 🍵",
+            "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
+            "affiliation": "RedirectTube ei ole sidoksissa FreeTubeen tai sen luojiin.<br>FreeTube on lisensoitu <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0-lisenssillä</a>.<br>Nimi \"FreeTube\" ja FreeTube-logo ovat <a href=\"https://docs.freetubeapp.io/credits/\">FreeTuben luojien</a> omaisuutta."
+        },
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "ui": {
+        "beta": {
+            "label": "Beeta"
+        },
+        "createdby": "<a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michał Stankiewicz</a>in luoma ❤️ kanssa",
+        "button": {
+            "opinion": "Kerro mielipiteesi",
+            "redirect": "Avaa tämä sivusto FreeTubessa",
+            "issue": "Ilmoita viasta",
+            "options": "Vaihtoehdot",
+            "suggestion": "Tee ehdotus"
+        },
+        "error": {
+            "e404": "Tätä sivua ei voi avata FreeTubessa."
+        },
+        "yes": "Kyllä",
+        "no": "Ei",
+        "iframeButton": {
+            "redirect": "Katso"
+        },
+        "close": "Sulje",
+        "contextMenu": {
+            "redirect": "Avaa FreeTubessa"
+        }
+    },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Avaa YouTube-linkit FreeTube-sovelluksessa"
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Johdanto"
+        },
+        "usage": {
+            "title": "Käyttö",
+            "toolbar": "Napsauta kuvaketta, kun olet YouTube-videosivulla",
+            "contextMenu": "tai napsauta hiiren kakkospainikkeella YouTube-videon URL-osoitetta"
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Upotuksen valinta"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Alkuperäistä videon osoitetta ei voitu lukea. Lataa sivu uudelleen."
+    }
+}

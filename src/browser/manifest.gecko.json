@@ -1,0 +1,67 @@
+{
+    "name": "__MSG_extension_name__",
+    "description": "__MSG_extension_description__",
+    "author": "Michał Stankiewicz",
+    "version": "1.12.0",
+    "manifest_version": 3,
+    "default_locale": "en",
+    "icons": {
+        "16": "img/icns/color/allow/16.png",
+        "32": "img/icns/color/allow/32.png",
+        "48": "img/icns/color/allow/48.png",
+        "64": "img/icns/color/allow/64.png",
+        "96": "img/icns/color/allow/96.png",
+        "128": "img/icns/color/allow/128.png",
+        "256": "img/icns/color/allow/256.png",
+        "512": "img/icns/color/allow/512.png"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "all_frames": true
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "i18n/locales/*.json",
+                "iframe-placeholder.html",
+                "iframe-placeholder.css",
+                "iframe-placeholder.js"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "contextMenus"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "__MSG_ui_button_redirect__"
+    },
+    "options_ui": {
+        "page": "options.html"
+    },
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "redirecttube@stankiewiczm.eu",
+            "strict_min_version": "109.0"
+        }
+    }
+}

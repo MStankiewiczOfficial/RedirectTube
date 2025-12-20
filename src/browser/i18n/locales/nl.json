@@ -1,0 +1,89 @@
+{
+    "options": {
+        "extensionIcon": {
+            "label": "Add-onpictogram"
+        },
+        "options": {
+            "title": "Instellingen"
+        },
+        "popupBehavior": {
+            "label": "Na aanklikken van add-onpictogram",
+            "redirect": "Doorverwijzen naar FreeTube",
+            "showPopup": "Menu openen"
+        },
+        "autoRedirectLinks": {
+            "label": "Automatically redirect YouTube links when clicked"
+        },
+        "footer": {
+            "kofi": "Als je deze add-on graag gebruikt, overweg dan <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">een donatie (bijv. een kopje thee)</a> 🍵",
+            "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
+            "affiliation": "RedirectTube is niet verbonden aan FreeTube of de makers ervan.<br>FreeTube wordt uitgebracht onder de voorwaarden van de <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0-licentie</a>.<br>De naam ‘FreeTube’ en het FreeTube-logo zijn eigendom van de <a href=\"https://docs.freetubeapp.io/credits/\">makers van FreeTube</a>."
+        },
+            "iframeBehavior": {
+                "label": "iFrame behavior",
+                "none": "Nothing",
+                "replace": "Replace"
+            },
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "ui": {
+        "beta": {
+            "label": "Bèta"
+        },
+        "createdby": "Met ❤️ gemaakt door <a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michał Stankiewicz</a>",
+        "button": {
+            "opinion": "Deel je mening",
+            "redirect": "Website openen in FreeTube",
+            "issue": "Meld een probleem",
+            "options": "Instellingen",
+            "suggestion": "Deel een idee"
+        },
+        "error": {
+            "e404": "Deze pagina kan niet worden geopend in FreeTube."
+        },
+        "yes": "Ja",
+        "no": "Nee",
+        "iframeButton": {
+            "redirect": "Bekijken op"
+        },
+        "close": "Sluiten",
+        "contextMenu": {
+            "redirect": "Openen in FreeTube"
+        }
+    },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Open YouTube-links in FreeTube"
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Introductie"
+        },
+        "usage": {
+            "title": "Gebruik",
+            "toolbar": "Open een YouTube-videopagina en klik op het pictogram",
+            "contextMenu": "of klik met de rechtermuisknop op de url van een YouTube-video"
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Insluiting kiezen"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Het oorspronkelijke video-adres kan niet worden gelezen. Laad de pagina opnieuw."
+    }
+}

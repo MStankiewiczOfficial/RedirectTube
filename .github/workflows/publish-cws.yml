@@ -1,0 +1,85 @@
+name: Publish to Chrome Web Store
+
+on:
+  workflow_run:
+    workflows:
+      - Build Unsigned Release
+    types:
+      - completed
+
+jobs:
+  publish-cws:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download release metadata
+      uses: actions/download-artifact@v4
+      with:
+        name: release-metadata
+        path: release-info
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Load release metadata
+      id: release-meta
+      run: |
+        source release-info/release-metadata.env
+        echo "EXT_NAME=${EXT_NAME}" >> $GITHUB_ENV
+        echo "EXT_VERSION=${EXT_VERSION}" >> $GITHUB_ENV
+        echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
+        echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV
+        echo "ext_name=${EXT_NAME}" >> $GITHUB_OUTPUT
+        echo "ext_version=${EXT_VERSION}" >> $GITHUB_OUTPUT
+        echo "release_tag=${RELEASE_TAG}" >> $GITHUB_OUTPUT
+
+    - name: Download unsigned bundle
+      uses: actions/download-artifact@v4
+      with:
+        name: unsigned-output
+        path: unsigned
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Publish to Chrome Web Store
+      uses: mobilefirstllc/cws-publish@latest
+      with:
+        action: 'publish'
+        client_id: ${{ secrets.CWS_CLIENT_ID }}
+        client_secret: ${{ secrets.CWS_CLIENT_SECRET }}
+        refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
+        extension_id: ${{ secrets.CWS_EXTENSION_ID }}
+        zip_file: ${{ format('unsigned/{0}-{1}-chromium-unsigned.zip', steps.release-meta.outputs.ext_name, steps.release-meta.outputs.ext_version) }}
+
+    - name: Fetch signed CRX from Chrome Web Store
+      env:
+        CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+        REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+        EXTENSION_ID: ${{ secrets.CWS_EXTENSION_ID }}
+      run: |
+        mkdir -p artifacts/chromium
+        ACCESS_TOKEN=$(curl -s https://oauth2.googleapis.com/token \
+          -d "client_id=${CLIENT_ID}" \
+          -d "client_secret=${CLIENT_SECRET}" \
+          -d "refresh_token=${REFRESH_TOKEN}" \
+          -d "grant_type=refresh_token" | python3 -c "import sys,json; print(json.load(sys.stdin).get('access_token',''))")
+        if [ -z "$ACCESS_TOKEN" ]; then
+          echo "Failed to retrieve access token" >&2
+          exit 1
+        fi
+        for attempt in 1 2 3 4 5; do
+          curl -sS -H "Authorization: Bearer $ACCESS_TOKEN" -H "x-goog-api-version: 2" \
+            -o artifacts/chromium/${EXT_NAME}-${EXT_VERSION}-chromium-signed.crx \
+            "https://www.googleapis.com/chromewebstore/v1.1/items/${EXTENSION_ID}?alt=media" && break
+          echo "Retrying CRX download (attempt ${attempt})"
+          sleep 15
+        done
+        if [ ! -s artifacts/chromium/${EXT_NAME}-${EXT_VERSION}-chromium-signed.crx ]; then
+          echo "CRX download failed" >&2
+          exit 1
+        fi
+
+    - name: Update GitHub Release with signed CRX
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release upload "$RELEASE_TAG" artifacts/chromium/${EXT_NAME}-${EXT_VERSION}-chromium-signed.crx --clobber

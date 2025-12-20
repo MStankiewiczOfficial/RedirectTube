@@ -1,0 +1,62 @@
+name: Publish to Mozilla Add-ons
+
+on:
+  workflow_run:
+    workflows:
+      - Build Unsigned Release
+    types:
+      - completed
+
+jobs:
+  publish-amo:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download release metadata
+      uses: actions/download-artifact@v4
+      with:
+        name: release-metadata
+        path: release-info
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Load release metadata
+      id: release-meta
+      run: |
+        source release-info/release-metadata.env
+        echo "EXT_NAME=${EXT_NAME}" >> $GITHUB_ENV
+        echo "EXT_VERSION=${EXT_VERSION}" >> $GITHUB_ENV
+        echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
+        echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV
+        echo "ext_name=${EXT_NAME}" >> $GITHUB_OUTPUT
+        echo "ext_version=${EXT_VERSION}" >> $GITHUB_OUTPUT
+        echo "release_tag=${RELEASE_TAG}" >> $GITHUB_OUTPUT
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.workflow_run.head_sha }}
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y zip
+        npm install -g web-ext
+
+    - name: Build Gecko bundle
+      run: node scripts/build.js --browser gecko --no-zip
+
+    - name: Sign XPI
+      env:
+        WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
+        WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+      run: |
+        mkdir -p artifacts/signed
+        web-ext sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --artifacts-dir ./artifacts/signed --source-dir dist/gecko
+        mv ./artifacts/signed/*.xpi ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi
+
+    - name: Update GitHub Release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release upload "$RELEASE_TAG" ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi --clobber

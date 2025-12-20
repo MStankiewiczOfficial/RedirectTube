@@ -1,8 +1,14 @@
-# 1.11.1 (25122)
+# 1.12.0 (25123)
 
 ## Release Notes
 
-- A bug was fixed that caused options not to load and not to save.
+- Added support for localization with `default_locale` set to `en`.
+- Introduced new `iframeBehavior` option for managing iframe behavior.
+- Added iframe placeholder.
+- Updated manifests to include new resources and support localization.
+- Refactored `translate.js` for improved language handling.
+- Enhanced error handling and translation in `popup.js`.
+- Removed the deprecated iframe button functionality.
 
 > [!WARNING]
-> For Firefox, the `-unsigned.xpi` artifact will most likely not install. Use the signed version (`-signed.xpi`) or download from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/redirecttube/). For Chromium-based browsers, download the `-chromium-unsigned.zip` and load it unpacked in Developer Mode.
+> For Firefox, the `-unsigned.xpi` artifact will most likely not install. Use the signed version (`-signed.xpi`) or download from the [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/redirecttube/). For Chromium-based browsers, download the `-chromium-unsigned.crx`, unzip it and load it unpacked in Developer Mode or download from the [Chrome Web Store](https://chromewebstore.google.com/detail/jpbaggklodpddjcadlebabhiopjkjfjh/).
