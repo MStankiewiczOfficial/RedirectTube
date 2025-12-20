@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/**'
+  workflow_dispatch:
 
 jobs:
   build-unsigned:
@@ -25,10 +26,16 @@ jobs:
 
     - name: Extract data from manifest.json
       run: |
-        NAME=$(jq -r '.name' src/browser/manifest.gecko.json | tr ' ' '_')
         VERSION=$(jq -r '.version' src/browser/manifest.gecko.json)
         ID=$(jq -r '.browser_specific_settings.gecko.id' src/browser/manifest.gecko.json)
-        echo "EXT_NAME=${NAME}" >> $GITHUB_ENV
+        GECKO_PACKAGE=$(find dist/packages -maxdepth 1 -type f -name "*-${VERSION}-gecko-unsigned.xpi" -print -quit)
+        if [ -z "$GECKO_PACKAGE" ]; then
+          echo "Unable to locate gecko package for version ${VERSION}" >&2
+          exit 1
+        fi
+        BASENAME=$(basename "$GECKO_PACKAGE")
+        SAFE_NAME="${BASENAME%-${VERSION}-gecko-unsigned.xpi}"
+        echo "EXT_NAME=${SAFE_NAME}" >> $GITHUB_ENV
         echo "EXT_VERSION=${VERSION}" >> $GITHUB_ENV
         echo "EXT_ID=${ID}" >> $GITHUB_ENV
 
