@@ -71,12 +71,12 @@ jobs:
 
     - name: Persist release metadata
       run: |
-        printf "EXT_NAME=%s\n" "$EXT_NAME" > release-metadata.env
+        printf "EXT_NAME=%q\n" "$EXT_NAME" > release-metadata.env
         {
-          printf "EXT_VERSION=%s\n" "$EXT_VERSION"
-          printf "EXT_ID=%s\n" "$EXT_ID"
-          printf "RELEASE_TAG=%s\n" "$RELEASE_TAG"
-          printf "RELEASE_NAME=%s\n" "$RELEASE_NAME"
+          printf "EXT_VERSION=%q\n" "$EXT_VERSION"
+          printf "EXT_ID=%q\n" "$EXT_ID"
+          printf "RELEASE_TAG=%q\n" "$RELEASE_TAG"
+          printf "RELEASE_NAME=%q\n" "$RELEASE_NAME"
         } >> release-metadata.env
 
     - name: Upload release metadata
