@@ -1,4 +1,4 @@
-name: Build, Sign and Publish
+name: Build Unsigned Release
 
 on:
   push:
@@ -8,14 +8,12 @@ on:
       - 'src/**'
 
 jobs:
-  build-and-publish:
+  build-unsigned:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code (main branch)
+    - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        ref: main
 
     - name: Install dependencies
       run: |
@@ -24,7 +22,6 @@ jobs:
         npm install -g web-ext
 
     - name: Extract data from manifest.json
-      id: extract-data
       run: |
         NAME=$(jq -r '.name' src/Gecko/manifest.json | tr ' ' '_')
         VERSION=$(jq -r '.version' src/Gecko/manifest.json)
@@ -33,18 +30,18 @@ jobs:
         echo "EXT_VERSION=${VERSION}" >> $GITHUB_ENV
         echo "EXT_ID=${ID}" >> $GITHUB_ENV
 
-    - name: Prepare artifacts directory
+    - name: Prepare artifacts directories
       run: |
         mkdir -p artifacts/unsigned
-        mkdir -p artifacts/signed
 
     - name: Generate tag and release name
-      id: generate-tag
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         YEAR=$(date +'%y')
         MONTH=$(date +'%m')
         RELEASE_COUNT=$(curl -s \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Authorization: Bearer $GH_TOKEN" \
           https://api.github.com/repos/${{ github.repository }}/releases \
           | jq "[.[] | select(.tag_name | startswith(\"${YEAR}${MONTH}\"))] | length + 1")
         TAG="${YEAR}${MONTH}$(printf "%0${#RELEASE_COUNT}d" ${RELEASE_COUNT})"
@@ -56,25 +53,40 @@ jobs:
       run: |
         web-ext build -s src/Gecko --artifacts-dir ./artifacts
         mv ./artifacts/*.zip ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip
-
-    - name: Convert ZIP to XPI
-      run: |
         mv ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi
 
     - name: Build Chromium unsigned ZIP
       run: |
         (cd src/Chromium && zip -r ../../artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip .)
 
-    - name: Sign XPI
-      env:
-        WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
-        WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+    - name: Upload unsigned bundle for follow-up workflows
+      uses: actions/upload-artifact@v4
+      with:
+        name: unsigned-output
+        path: artifacts/unsigned
+
+    - name: Persist release metadata
       run: |
-        web-ext sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --artifacts-dir ./artifacts/signed --source-dir src/Gecko
-        mv ./artifacts/signed/*.xpi ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi
+        printf "EXT_NAME=%s\n" "$EXT_NAME" > release-metadata.env
+        {
+          printf "EXT_VERSION=%s\n" "$EXT_VERSION"
+          printf "EXT_ID=%s\n" "$EXT_ID"
+          printf "RELEASE_TAG=%s\n" "$RELEASE_TAG"
+          printf "RELEASE_NAME=%s\n" "$RELEASE_NAME"
+        } >> release-metadata.env
+
+    - name: Upload release metadata
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-metadata
+        path: release-metadata.env
 
     - name: Create GitHub Release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create "$RELEASE_TAG" ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi --title "$RELEASE_NAME" -F ./release-notes.md
+        gh release create "$RELEASE_TAG" \
+          ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi \
+          ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip \
+          --title "$RELEASE_NAME" \
+          --notes-file ./release-notes.md
