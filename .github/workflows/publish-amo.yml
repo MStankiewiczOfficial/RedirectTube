@@ -43,13 +43,16 @@ jobs:
         sudo apt-get install -y zip
         npm install -g web-ext
 
+    - name: Build Gecko bundle
+      run: node scripts/build.js --browser gecko --no-zip
+
     - name: Sign XPI
       env:
         WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
         WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
       run: |
         mkdir -p artifacts/signed
-        web-ext sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --artifacts-dir ./artifacts/signed --source-dir src/Gecko
+        web-ext sign --channel=listed --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --artifacts-dir ./artifacts/signed --source-dir dist/gecko
         mv ./artifacts/signed/*.xpi ./artifacts/signed/${EXT_NAME}-${EXT_VERSION}-gecko-signed.xpi
 
     - name: Update GitHub Release

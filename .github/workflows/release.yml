@@ -19,13 +19,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y zip jq
-        npm install -g web-ext
+
+    - name: Build browser bundles
+      run: node scripts/build.js
 
     - name: Extract data from manifest.json
       run: |
-        NAME=$(jq -r '.name' src/Gecko/manifest.json | tr ' ' '_')
-        VERSION=$(jq -r '.version' src/Gecko/manifest.json)
-        ID=$(jq -r '.browser_specific_settings.gecko.id' src/Gecko/manifest.json)
+        NAME=$(jq -r '.name' src/browser/manifest.gecko.json | tr ' ' '_')
+        VERSION=$(jq -r '.version' src/browser/manifest.gecko.json)
+        ID=$(jq -r '.browser_specific_settings.gecko.id' src/browser/manifest.gecko.json)
         echo "EXT_NAME=${NAME}" >> $GITHUB_ENV
         echo "EXT_VERSION=${VERSION}" >> $GITHUB_ENV
         echo "EXT_ID=${ID}" >> $GITHUB_ENV
@@ -33,6 +35,11 @@ jobs:
     - name: Prepare artifacts directories
       run: |
         mkdir -p artifacts/unsigned
+
+    - name: Copy unsigned packages
+      run: |
+        cp dist/packages/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi artifacts/unsigned/
+        cp dist/packages/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip artifacts/unsigned/
 
     - name: Generate tag and release name
       env:
@@ -48,16 +55,6 @@ jobs:
         RELEASE_NAME="${EXT_VERSION} (${TAG})"
         echo "RELEASE_TAG=${TAG}" >> $GITHUB_ENV
         echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV
-
-    - name: Build unsigned XPI
-      run: |
-        web-ext build -s src/Gecko --artifacts-dir ./artifacts
-        mv ./artifacts/*.zip ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip
-        mv ./artifacts/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.zip ./artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-gecko-unsigned.xpi
-
-    - name: Build Chromium unsigned ZIP
-      run: |
-        (cd src/Chromium && zip -r ../../artifacts/unsigned/${EXT_NAME}-${EXT_VERSION}-chromium-unsigned.zip .)
 
     - name: Upload unsigned bundle for follow-up workflows
       uses: actions/upload-artifact@v4

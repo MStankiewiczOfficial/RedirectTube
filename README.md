@@ -35,9 +35,10 @@ This method is for developers and advanced users.
 > If you restart your browser, the extension will be disabled.
 
 1. Clone the repository.
-2. Go to `about:debugging#/runtime/this-firefox`.
-3. Click "Load Temporary Add-on".
-4. Select the `manifest.json` file from the cloned repository (it's in the `src` directory).
+2. Run `node scripts/build.js --browser gecko --no-zip` to generate the Firefox bundle inside `dist/gecko`.
+3. Go to `about:debugging#/runtime/this-firefox`.
+4. Click "Load Temporary Add-on".
+5. Select the `manifest.json` file located in `dist/gecko`.
    The extension is now installed in your browser.
 
 ### Chromium-based browsers
@@ -60,6 +61,21 @@ You can install RedirectTube from the Chrome Web Store.
 4. Enable **Developer mode**.
 5. Click **Load unpacked** and select the directory you extracted in step 2.
    The extension will appear in the toolbar once the folder is loaded.
+
+## Local builds
+
+RedirectTube keeps a single shared codebase in `src/browser`. Use the provided helper to prepare browser-specific bundles:
+
+```
+node scripts/build.js
+```
+
+The script requires Node.js 16.7+ (for `fs.cp`) and the `zip` CLI. It produces unpacked bundles at `dist/chromium` and `dist/gecko`, along with ready-to-distribute archives under `dist/packages`. Useful flags:
+
+- `--browser chromium,gecko` – build only the listed browsers.
+- `--no-zip` – skip archive creation if you just need the unpacked directory (handy for temporary installs in Firefox/Chromium).
+
+Once built, load the browser-specific folder from `dist/` via your browser's developer mode, or upload the generated archives wherever you distribute the extension.
 
 ## Usage
 
