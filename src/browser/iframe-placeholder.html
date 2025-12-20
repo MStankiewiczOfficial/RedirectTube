@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title data-i18n="options.page.title">RedirectTube</title>
-        <link rel="stylesheet" href="options.css">
-    </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="iframePlaceholder.page.title">RedirectTube • Embed Choice</title>
+    <link rel="stylesheet" href="iframe-placeholder.css">
+
 </head>
 <body>
-    <div id="title">
-        <svg class="logo" width="192px" viewBox="0 0 861 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <div class="wrapper">
+        <div class="header">
+            <div>
+                <svg class="logo" width="192px" viewBox="0 0 861 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
             <g transform="matrix(4.63167,0,0,4.63167,-55.5801,-55.5801)">
                 <path d="M14.75,12C13.226,12 12,13.274 12,14.857L12,44.857C12,49.143 17.5,52 20.25,52L23,52L23,14.857C23,13.274 21.773,12 20.25,12L14.75,12Z" style="fill:#fff;"/>
             </g>
@@ -63,94 +64,24 @@
                 <path d="M887.785,380L914.79,380L914.79,371.448L896.787,371.448L896.787,352.185L912.45,352.185L912.45,344.083L896.787,344.083L896.787,325.54L914.52,325.54L914.52,316.988L887.785,316.988L887.785,380Z" style="fill:#fff;fill-rule:nonzero;"/>
             </g>
         </svg>
-        <div class="socials">
-            <div class="social" id="GitHubBackground">
-                <span class="social-title" id="GitHubTitle">GitHub</span>
-                <a href="https://github.com/MStankiewiczOfficial/RedirectTube" target="_blank" title="GitHub">
-                    <svg class="social-logo" id="GitHubIcon" viewBox="0 0 97.6 96" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M48.9,0C21.8,0,0,22,0,49.2C0,71,14,89.4,33.4,95.9c2.4,0.5,3.3-1.1,3.3-2.4c0-1.1-0.1-5.1-0.1-9.1 c-13.6,2.9-16.4-5.9-16.4-5.9c-2.2-5.7-5.4-7.2-5.4-7.2c-4.4-3,0.3-3,0.3-3c4.9,0.3,7.5,5.1,7.5,5.1c4.4,7.5,11.4,5.4,14.2,4.1 c0.4-3.2,1.7-5.4,3.1-6.6c-10.8-1.1-22.2-5.4-22.2-24.3c0-5.4,1.9-9.8,5-13.2c-0.5-1.2-2.2-6.3,0.5-13c0,0,4.1-1.3,13.4,5.1 c3.9-1.1,8.1-1.6,12.2-1.6s8.3,0.6,12.2,1.6c9.3-6.4,13.4-5.1,13.4-5.1c2.7,6.8,1,11.8,0.5,13c3.2,3.4,5,7.8,5,13.2 c0,18.9-11.4,23.1-22.3,24.3c1.8,1.5,3.3,4.5,3.3,9.1c0,6.6-0.1,11.9-0.1,13.5c0,1.3,0.9,2.9,3.3,2.4C83.6,89.4,97.6,71,97.6,49.2 C97.7,22,75.8,0,48.9,0z"/>
-                    </svg>
-                </a>
             </div>
-            <div class="social" id="MastodonBackground">
-                <span class="social-title" id="MastodonTitle">Mastodon</span>
-                <a href="https://fosstodon.org/@mstankiewicz" target="_blank" title="Mastodon">
-                    <svg class="social-logo" id="MastodonIcon" viewBox="0 0 74 79" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M73.7014 17.9592C72.5616 9.62034 65.1774 3.04876 56.424 1.77536C54.9472 1.56019 49.3517 0.7771 36.3901 0.7771H36.2933C23.3281 0.7771 20.5465 1.56019 19.0697 1.77536C10.56 3.01348 2.78877 8.91838 0.903306 17.356C-0.00357857 21.5113 -0.100361 26.1181 0.068112 30.3439C0.308275 36.404 0.354874 42.4535 0.91406 48.489C1.30064 52.498 1.97502 56.4751 2.93215 60.3905C4.72441 67.6217 11.9795 73.6395 19.0876 76.0945C26.6979 78.6548 34.8821 79.0799 42.724 77.3221C43.5866 77.1245 44.4398 76.8953 45.2833 76.6342C47.1867 76.0381 49.4199 75.3714 51.0616 74.2003C51.0841 74.1839 51.1026 74.1627 51.1156 74.1382C51.1286 74.1138 51.1359 74.0868 51.1368 74.0592V68.2108C51.1364 68.185 51.1302 68.1596 51.1185 68.1365C51.1069 68.1134 51.0902 68.0932 51.0695 68.0773C51.0489 68.0614 51.0249 68.0503 50.9994 68.0447C50.9738 68.0391 50.9473 68.0392 50.9218 68.045C45.8976 69.226 40.7491 69.818 35.5836 69.8087C26.694 69.8087 24.3031 65.6569 23.6184 63.9285C23.0681 62.4347 22.7186 60.8764 22.5789 59.2934C22.5775 59.2669 22.5825 59.2403 22.5934 59.216C22.6043 59.1916 22.621 59.1702 22.6419 59.1533C22.6629 59.1365 22.6876 59.1248 22.714 59.1191C22.7404 59.1134 22.7678 59.1139 22.794 59.1206C27.7345 60.2936 32.799 60.8856 37.8813 60.8843C39.1036 60.8843 40.3223 60.8843 41.5447 60.8526C46.6562 60.7115 52.0437 60.454 57.0728 59.4874C57.1983 59.4628 57.3237 59.4416 57.4313 59.4098C65.3638 57.9107 72.9128 53.2051 73.6799 41.2895C73.7086 40.8204 73.7803 36.3758 73.7803 35.889C73.7839 34.2347 74.3216 24.1533 73.7014 17.9592ZM61.4925 47.6918H53.1514V27.5855C53.1514 23.3526 51.3591 21.1938 47.7136 21.1938C43.7061 21.1938 41.6988 23.7476 41.6988 28.7919V39.7974H33.4078V28.7919C33.4078 23.7476 31.3969 21.1938 27.3894 21.1938C23.7654 21.1938 21.9552 23.3526 21.9516 27.5855V47.6918H13.6176V26.9752C13.6176 22.7423 14.7157 19.3795 16.9118 16.8868C19.1772 14.4 22.1488 13.1231 25.8373 13.1231C30.1064 13.1231 33.3325 14.7386 35.4832 17.9662L37.5587 21.3949L39.6377 17.9662C41.7884 14.7386 45.0145 13.1231 49.2765 13.1231C52.9614 13.1231 55.9329 14.4 58.2055 16.8868C60.4017 19.3772 61.4997 22.74 61.4997 26.9752L61.4925 47.6918Z" fill="inherit"/>
-                    </svg>
-                </a>
+        </div>
+        <div class="content">
+            <h1 id="headline" data-i18n="iframePlaceholder.body.headline">Choose where to watch</h1>
+            <p id="message" data-i18n="iframePlaceholder.body.message">Pick the player you want to use for this video.</p>
+            <div class="actions">
+                <button class="primary" data-action="freetube">
+                    <span id="freetubeLabel" data-i18n="iframePlaceholder.buttons.freetube">Open in FreeTube app</span>
+                </button>
+                <button data-action="youtube">
+                    <span id="youtubeLabel" data-i18n="iframePlaceholder.buttons.youtube">Watch on YouTube</span>
+                </button>
+            </div>
+            <div class="warning" id="warning" data-i18n="iframePlaceholder.warning" hidden>
+                Unable to read the original video URL. Please reload the page.
             </div>
         </div>
     </div>
-    <div id="content">
-        <h1 data-i18n="options.options.title">Options</h1>
-        <div class="section">
-            <div class="section-label">
-                <label for="popupBehavior" data-i18n="options.popupBehavior.label">When clicking the extension icon</label>
-            </div>
-            <select name="popupBehavior" id="popupBehavior">
-                <option value="showPopup" data-i18n="options.popupBehavior.showPopup">Show menu</option>
-                <option value="redirect" data-i18n="options.popupBehavior.redirect">Redirect to FreeTube</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <div class="section-label">
-                <label for="autoRedirectLinks" data-i18n="options.autoRedirectLinks.label">Automatically redirect YouTube links when clicked</label>
-                <!-- <span class="beta-label" data-i18n="ui.beta.label">Beta</span> -->
-            </div>
-            <select name="autoRedirectLinks" id="autoRedirectLinks">
-                <option value="autoRedirectLinksNo" data-i18n="ui.no">No</option>
-                <option value="autoRedirectLinksYes" data-i18n="ui.yes">Yes</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <div class="section-label">
-                <label for="iframeBehavior" data-i18n="options.iframeBehavior.label">iFrame behavior</label>
-                <!-- <span class="beta-label" data-i18n="ui.beta.label">Beta</span> -->
-            </div>
-            <select name="iframeBehavior" id="iframeBehavior">
-                <option value="iframeBehaviorNone" data-i18n="options.iframeBehavior.none">Nothing</option>
-                <option value="iframeBehaviorReplace" data-i18n="options.iframeBehavior.replace">Replace</option>
-            </select>
-        </div>
-        <br>
-        <div class="section">
-            <label for="extensionIcon" data-i18n="options.extensionIcon.label">Extension icon:</label>
-            <div class="extension-icons-list">
-                <label class="extension-icon">
-                    <input type="radio" name="extensionIcon" value="color" id="colorIcon">
-                    <div class="extension-icons">
-                        <img src="img/icns/color/example.png" alt="Color icons">
-                    </div>
-                </label>
-                <label class="extension-icon">
-                    <input type="radio" name="extensionIcon" value="mono" id="monoIcon">
-                    <div class="extension-icons">
-                        <img src="img/icns/mono/black/example.png" class="browser-light" alt="Mono icons">
-                        <img src="img/icns/mono/white/example.png" class="browser-dark" alt="Mono icons">
-                    </div>
-                </label>
-            </div>
-        </div>
-        <br>
-        <div class="section">
-            <button id="opinionButton" data-i18n="ui.button.opinion">Give your opinion</button>
-            <button id="suggestionButton" data-i18n="ui.button.suggestion">Make a suggestion</button>
-            <button id="issueButton" data-i18n="ui.button.issue">Report an issue</button>
-        </div>
-    </div>
-    <br>
-    <footer>
-        <p data-i18n="options.footer.version">RedirectTube v<span id="version">X.Y.Z</span></p>
-        <p data-i18n="ui.createdby">Created with ❤️ by <a href="https://www.stankiewiczm.eu" target="_blank">Michał Stankiewicz</a></p>
-        <p><a href="https://github.com/MStankiewiczOfficial/RedirectTube/blob/main/LICENSE.md">CC BY-NC-SA 4.0</a></p>
-        <p data-i18n="options.footer.kofi">If you like this extension, consider <a href="https://ko-fi.com/mstankiewicz" target="_blank">buying me a tea</a> 🍵</p>
-        <hr>
-        <p data-i18n="options.footer.affiliation">RedirectTube is not affiliated with FreeTube or its creators.<br>FreeTube is licensed under the <a href="https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE">AGPL-3.0 licence</a>.<br>The name "FreeTube" and FreeTube logo are the property of the <a href="https://docs.freetubeapp.io/credits/">creators of FreeTube</a>.</p>
-    </footer>
-    <script src="i18n/translate.js"></script>
-    <script src="options.js"></script>
+    <script src="iframe-placeholder.js" defer></script>
 </body>
 </html>

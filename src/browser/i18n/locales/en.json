@@ -24,6 +24,10 @@
             "e404": "Cannot open this page in FreeTube."
         }
     },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Open YouTube links in FreeTube"
+    },
     "introduction": {
         "page": {
             "title": "RedirectTube • Introduction"
@@ -49,8 +53,10 @@
         "autoRedirectLinks": {
             "label": "Automatically redirect YouTube links when clicked"
         },
-        "iframeButton": {
-            "label": "Show button in iframes"
+        "iframeBehavior": {
+            "label": "iFrame behavior",
+            "none": "Nothing",
+            "replace": "Replace"
         },
         "extensionIcon": {
             "label": "Extension icon"
@@ -65,5 +71,19 @@
         "page": {
             "title": "RedirectTube"
         }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Embed Choice"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Unable to read the original video URL. Please reload the page."
     }
 }

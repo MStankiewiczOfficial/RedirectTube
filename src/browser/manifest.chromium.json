@@ -1,9 +1,10 @@
 {
-    "name": "RedirectTube",
-    "description": "Open YouTube links in FreeTube",
+    "name": "__MSG_extension_name__",
+    "description": "__MSG_extension_description__",
     "author": "Michał Stankiewicz",
-    "version": "1.11.1",
+    "version": "1.12.0",
     "manifest_version": 3,
+    "default_locale": "en",
     "icons": {
         "16": "img/icns/color/allow/16.png",
         "32": "img/icns/color/allow/32.png",
@@ -29,7 +30,12 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["i18n/locales/*.json"],
+            "resources": [
+                "i18n/locales/*.json",
+                "iframe-placeholder.html",
+                "iframe-placeholder.css",
+                "iframe-placeholder.js"
+            ],
             "matches": ["<all_urls>"]
         }
     ],
@@ -40,7 +46,8 @@
         "contextMenus"
     ],
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_title": "__MSG_ui_button_redirect__"
     },
     "options_ui": {
         "page": "options.html"

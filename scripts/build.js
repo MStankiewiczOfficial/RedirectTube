@@ -14,6 +14,7 @@ const BROWSERS = [
   { key: 'gecko', manifest: 'manifest.gecko.json', archiveExt: 'xpi' }
 ];
 const MANIFEST_FILES = BROWSERS.map((browser) => browser.manifest);
+const DEFAULT_LOCALE = 'en';
 
 async function main() {
   try {
@@ -83,9 +84,19 @@ async function buildBrowser(browser, options) {
     }
   }
 
-  const manifestContent = await fs.readFile(path.join(browserDistDir, 'manifest.json'), 'utf8');
+  await generateLocaleMessages(browserDistDir);
+
+  const manifestPath = path.join(browserDistDir, 'manifest.json');
+  const manifestContent = await fs.readFile(manifestPath, 'utf8');
   const manifestData = JSON.parse(manifestContent);
-  const safeName = manifestData.name.replace(/\s+/g, '_');
+  const resolvedName = await resolveManifestText(manifestData.name, browserDistDir);
+  const placeholderMatcher = /^__MSG_.+__$/;
+  const safeNameSource = !placeholderMatcher.test(resolvedName || '')
+    ? resolvedName
+    : !placeholderMatcher.test(manifestData.name || '')
+    ? manifestData.name
+    : 'redirecttube';
+  const safeName = safeNameSource.replace(/\s+/g, '_');
   const archiveBaseName = `${safeName}-${manifestData.version}-${browser.key}-unsigned`;
 
   let archivePath = null;
@@ -112,6 +123,113 @@ function runZip(sourceDir, outputFile) {
 
   if (result.status !== 0) {
     throw new Error('zip command failed');
+  }
+}
+
+async function generateLocaleMessages(browserDir) {
+  const localesSourceDir = path.join(browserDir, 'i18n', 'locales');
+  let localeEntries;
+  try {
+    localeEntries = await fs.readdir(localesSourceDir, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return;
+    }
+    throw error;
+  }
+
+  const localesTargetDir = path.join(browserDir, '_locales');
+  await fs.rm(localesTargetDir, { recursive: true, force: true });
+  await fs.mkdir(localesTargetDir, { recursive: true });
+
+  for (const entry of localeEntries) {
+    if (!entry.isFile() || !entry.name.endsWith('.json')) {
+      continue;
+    }
+
+    const localeCode = entry.name.replace(/\.json$/i, '');
+    const localePath = path.join(localesSourceDir, entry.name);
+    const localeContent = await fs.readFile(localePath, 'utf8');
+    const localeData = JSON.parse(localeContent);
+    const flattened = flattenLocaleObject(localeData);
+    const messages = {};
+
+    for (const [key, value] of Object.entries(flattened)) {
+      if (typeof value !== 'string') {
+        continue;
+      }
+      const messageName = toMessageName(key);
+      if (!messageName) {
+        continue;
+      }
+      messages[messageName] = { message: value };
+    }
+
+    if (!Object.keys(messages).length) {
+      continue;
+    }
+
+    const targetLocaleDir = path.join(localesTargetDir, localeCode);
+    await fs.mkdir(targetLocaleDir, { recursive: true });
+    await fs.writeFile(
+      path.join(targetLocaleDir, 'messages.json'),
+      `${JSON.stringify(messages, null, 2)}\n`
+    );
+  }
+}
+
+function flattenLocaleObject(input, prefix = '') {
+  if (!input || typeof input !== 'object') {
+    return prefix && typeof input === 'string' ? { [prefix]: input } : {};
+  }
+
+  const output = {};
+  for (const [key, value] of Object.entries(input)) {
+    const nextPrefix = prefix ? `${prefix}.${key}` : key;
+    if (typeof value === 'string') {
+      output[nextPrefix] = value;
+    } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+      Object.assign(output, flattenLocaleObject(value, nextPrefix));
+    }
+  }
+  return output;
+}
+
+function toMessageName(key) {
+  if (!key) {
+    return '';
+  }
+  return key
+    .split('.')
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+    .join('_')
+    .replace(/[^A-Za-z0-9_]/g, '_');
+}
+
+async function resolveManifestText(value, browserDir) {
+  if (typeof value !== 'string') {
+    return value;
+  }
+  const match = value.match(/^__MSG_(.+)__$/);
+  if (!match) {
+    return value;
+  }
+
+  const messagesPath = path.join(
+    browserDir,
+    '_locales',
+    DEFAULT_LOCALE,
+    'messages.json'
+  );
+
+  try {
+    const content = await fs.readFile(messagesPath, 'utf8');
+    const messages = JSON.parse(content);
+    const key = match[1];
+    return (messages[key] && messages[key].message) || value;
+  } catch (error) {
+    return value;
   }
 }
 

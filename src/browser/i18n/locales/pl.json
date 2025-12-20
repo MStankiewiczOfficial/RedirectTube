@@ -24,6 +24,10 @@
             "e404": "Nie można otworzyć tej strony we FreeTube."
         }
     },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Otwieraj linki z YouTube we FreeTube"
+    },
     "introduction": {
         "page": {
             "title": "RedirectTube • Wprowadzenie"
@@ -49,8 +53,10 @@
         "autoRedirectLinks": {
             "label": "Automatycznie przekierowuj linki YouTube po kliknięciu"
         },
-        "iframeButton": {
-            "label": "Pokaż przycisk w ramkach iframe"
+        "iframeBehavior": {
+            "label": "Zachowanie ramek iFrame",
+            "none": "Nic nie rób",
+            "replace": "Zastąp"
         },
         "extensionIcon": {
             "label": "Ikona rozszerzenia"
@@ -65,5 +71,19 @@
         "page": {
             "title": "RedirectTube"
         }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Wybór odtwarzacza"
+        },
+        "body": {
+            "headline": "Wybierz, gdzie oglądać",
+            "message": "Wskaż odtwarzacz, w którym chcesz odtworzyć ten film."
+        },
+        "buttons": {
+            "freetube": "Otwórz w aplikacji FreeTube",
+            "youtube": "Oglądaj w YouTube"
+        },
+        "warning": "Nie można odczytać oryginalnego adresu URL filmu. Odśwież stronę."
     }
 }

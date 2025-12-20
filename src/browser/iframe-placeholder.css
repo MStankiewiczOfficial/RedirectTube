@@ -1,0 +1,127 @@
+@import url("colors.css");
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--color);
+    display: flex;
+}
+
+.wrapper {
+    width: 100%;
+    background-color: var(--background);
+    border: 1px solid #79797979;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #cb1314;
+    color: #fff;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.header-subtitle {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.content {
+    padding: 24px;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: 1.6rem;
+}
+
+p {
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+button {
+    padding: 0.75em 1.5em;
+    border-radius: 8px;
+    border: 1px solid #79797979;
+    background-color: #79797979;
+    color: var(--color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    background-color: #797979b9;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button.primary {
+    background-color: #cb1314;
+    border-color: #cb1314;
+    color: #fff;
+}
+
+button.primary:hover {
+    background-color: #e01718;
+}
+
+button:disabled {
+    background-color: #79797979;
+    color: #79797979;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.warning {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px dashed #79797979;
+    background-color: rgba(121, 121, 121, 0.15);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+
+    .header,
+    .content {
+        padding: 18px;
+    }
+}

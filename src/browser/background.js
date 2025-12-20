@@ -28,6 +28,7 @@ extensionApi.runtime.onInstalled.addListener((details) => {
         extensionApi.storage.local.set({
             extensionIcon: "color",
             autoRedirectLinks: "autoRedirectLinksNo",
+            iframeBehavior: "iframeBehaviorReplace",
         });
     }
     detectYTInThisTab();
@@ -119,38 +120,35 @@ function getIconPath(preference, isAllowed, isDarkMode) {
 
 function updateContentScriptSettings() {
     extensionApi.storage.local.get(
-        ["lang", "iframeButton", "autoRedirectLinks"],
-        (result) => {
-            const selectedLang = result.lang || "en";
-            const iframeButtonSetting =
-                result.iframeButton || "iframeButtonYes";
+        ["iframeBehavior", "iframeButton", "autoRedirectLinks"],
+        (result = {}) => {
+            const iframeBehaviorSetting =
+                normalizeIframeBehavior(result.iframeBehavior) ||
+                normalizeIframeBehavior(result.iframeButton) ||
+                "iframeBehaviorReplace";
             const autoRedirectSetting =
                 result.autoRedirectLinks || "autoRedirectLinksNo";
-            fetch(`i18n/locales/${selectedLang}.json`)
-                .then((response) => response.json())
-                .then((data) => {
-                    const buttonName = data.ui.iframeButton.redirect;
-                    extensionApi.tabs.query(
-                        { active: true, currentWindow: true },
-                        (tabs) => {
-                            if (!tabs || !tabs.length) {
-                                return;
-                            }
-                            extensionApi.tabs.sendMessage(
-                                tabs[0].id,
-                                {
-                                    redirecttubeButtonName: buttonName,
-                                    redirecttubeIframeButton:
-                                        iframeButtonSetting,
-                                    redirecttubeAutoRedirect:
-                                        autoRedirectSetting,
-                                },
-                                () => extensionApi.runtime.lastError
-                            );
-                        }
+
+            const buttonName =
+                getMessageByKey("ui.iframeButton.redirect") || "Watch on";
+
+            extensionApi.tabs.query(
+                { active: true, currentWindow: true },
+                (tabs) => {
+                    if (!tabs || !tabs.length) {
+                        return;
+                    }
+                    extensionApi.tabs.sendMessage(
+                        tabs[0].id,
+                        {
+                            redirecttubeButtonName: buttonName,
+                            redirecttubeIframeBehavior: iframeBehaviorSetting,
+                            redirecttubeAutoRedirect: autoRedirectSetting,
+                        },
+                        () => extensionApi.runtime.lastError
                     );
-                })
-                .catch(() => {});
+                }
+            );
         }
     );
 }
@@ -167,28 +165,73 @@ extensionApi.contextMenus.onClicked.addListener((info) => {
 });
 
 function createContextMenu() {
-    extensionApi.storage.local.get("lang", (result) => {
-        const lang = result && result.lang ? result.lang : "en";
-        if (lang === currentMenuLang) {
-            return;
-        }
-        currentMenuLang = lang;
-        extensionApi.contextMenus.removeAll(() => {
-            fetch(`i18n/locales/${lang}.json`)
-                .then((response) => response.json())
-                .then((data) => {
-                    extensionApi.contextMenus.create({
-                        id: "openInFreeTube",
-                        title: data.ui.contextMenu.redirect,
-                        contexts: ["link"],
-                        targetUrlPatterns: [
-                            "*://www.youtube.com/*",
-                            "*://youtube.com/*",
-                            "*://youtu.be/*",
-                        ],
-                    });
-                })
-                .catch(() => {});
+    const lang = getBrowserLocale();
+    if (lang === currentMenuLang) {
+        return;
+    }
+    currentMenuLang = lang;
+    const title =
+        getMessageByKey("ui.contextMenu.redirect") || "Open in FreeTube";
+
+    extensionApi.contextMenus.removeAll(() => {
+        extensionApi.contextMenus.create({
+            id: "openInFreeTube",
+            title,
+            contexts: ["link"],
+            targetUrlPatterns: [
+                "*://www.youtube.com/*",
+                "*://youtube.com/*",
+                "*://youtu.be/*",
+            ],
         });
     });
+}
+
+function normalizeIframeBehavior(value) {
+    if (!value) {
+        return null;
+    }
+    if (value === "iframeBehaviorReplace" || value === "iframeBehaviorNone") {
+        return value;
+    }
+    if (value === "iframeBehaviorButton" || value === "iframeButtonYes") {
+        return "iframeBehaviorReplace";
+    }
+    if (value === "iframeButtonNo") {
+        return "iframeBehaviorNone";
+    }
+    return null;
+}
+
+function getBrowserLocale() {
+    const raw =
+        (extensionApi.i18n &&
+            typeof extensionApi.i18n.getUILanguage === "function"
+            ? extensionApi.i18n.getUILanguage()
+            : navigator.language || "en") || "en";
+    return (raw.split("-")[0] || "en").toLowerCase();
+}
+
+function getMessageByKey(key) {
+    if (
+        !key ||
+        !extensionApi.i18n ||
+        typeof extensionApi.i18n.getMessage !== "function"
+    ) {
+        return "";
+    }
+    const messageName = toMessageName(key);
+    if (!messageName) {
+        return "";
+    }
+    return extensionApi.i18n.getMessage(messageName) || "";
+}
+
+function toMessageName(key) {
+    return key
+        .split(".")
+        .map((segment) => segment.trim())
+        .filter(Boolean)
+        .join("_")
+        .replace(/[^A-Za-z0-9_]/g, "_");
 }

@@ -24,6 +24,10 @@
             "redirect": "Ouvrir dans FreeTube"
         }
     },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Ouvrez les liens YouTube dans FreeTube"
+    },
     "options": {
         "extensionIcon": {
             "label": "Icône de l'extension"
@@ -33,8 +37,10 @@
             "kofi": "Si vous aimez cette extension, pensez à <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">m'acheter un thé</a> 🍵",
             "affiliation": "RedirectTube n'est pas affilié avec FreeTube ou ses créateurs.<br>FreeTube est sous licence <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0</a>.<br>Le nom \"FreeTube\" et le logo FreeTube sont la propriété des <a href=\"https://docs.freetubeapp.io/credits/\">créateurs de FreeTube</a>."
         },
-        "iframeButton": {
-            "label": "Afficher le bouton dans les iframes"
+        "iframeBehavior": {
+            "label": "iFrame behavior",
+            "none": "Nothing",
+            "replace": "Replace"
         },
         "options": {
             "title": "Options"
@@ -65,5 +71,19 @@
         "page": {
             "title": "RedirectTube"
         }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Choix de l'intégration"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Impossible de lire l'URL d'origine de la vidéo. Veuillez recharger la page."
     }
 }

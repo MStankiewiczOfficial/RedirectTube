@@ -18,12 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             loadOptions(url, tabs);
         } else {
-            fetch(`i18n/locales/${lang}.json`)
-                .then((response) => response.json())
-                .then((data) => {
-                    errorText.innerHTML = data.ui.error.e404;
-                    redirectButton.disabled = true;
-                });
+            errorText.textContent =
+                getMessageByKey("ui.error.e404") ||
+                "Cannot open this page in FreeTube.";
+            redirectButton.disabled = true;
         }
     });
 });
@@ -74,3 +72,27 @@ issueButton.addEventListener("click", function () {
         url: "https://github.com/MStankiewiczOfficial/RedirectTube/issues/new?assignees=MStankiewiczOfficial&labels=bug&projects=&template=bug-report.yml&title=%5BBug%5D%3A+",
     });
 });
+
+function getMessageByKey(key) {
+    if (
+        !key ||
+        !extensionApi.i18n ||
+        typeof extensionApi.i18n.getMessage !== "function"
+    ) {
+        return "";
+    }
+    const messageName = toMessageName(key);
+    if (!messageName) {
+        return "";
+    }
+    return extensionApi.i18n.getMessage(messageName) || "";
+}
+
+function toMessageName(key) {
+    return key
+        .split(".")
+        .map((segment) => segment.trim())
+        .filter(Boolean)
+        .join("_")
+        .replace(/[^A-Za-z0-9_]/g, "_");
+}

@@ -2,7 +2,7 @@ const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
 
 var popupBehavior = "showPopup";
 var autoRedirectLinks = "autoRedirectLinksNo";
-var iframeButton = "iframeButtonYes";
+var iframeBehavior = "iframeBehaviorReplace";
 var extensionIcon = "color";
 
 function saveOptions(e) {
@@ -11,7 +11,7 @@ function saveOptions(e) {
         extensionApi.storage.local.set({
             popupBehavior: document.getElementById("popupBehavior").value,
             autoRedirectLinks: document.getElementById("autoRedirectLinks").value,
-            iframeButton: document.getElementById("iframeButton").value,
+            iframeBehavior: document.getElementById("iframeBehavior").value,
             extensionIcon: document.querySelector(
                 'input[name="extensionIcon"]:checked'
             ).value,
@@ -26,8 +26,11 @@ function restoreOptions() {
             result.popupBehavior || popupBehavior;
         document.getElementById("autoRedirectLinks").value =
             result.autoRedirectLinks || autoRedirectLinks;
-        document.getElementById("iframeButton").value =
-            result.iframeButton || iframeButton;
+        const storedIframeBehavior =
+            normalizeIframeBehavior(result.iframeBehavior) ||
+            normalizeIframeBehavior(result.iframeButton) ||
+            iframeBehavior;
+        document.getElementById("iframeBehavior").value = storedIframeBehavior;
         document.querySelector(
             'input[name="extensionIcon"][value="' +
                 (result.extensionIcon || extensionIcon) +
@@ -43,7 +46,7 @@ function restoreOptions() {
         [
             "popupBehavior",
             "autoRedirectLinks",
-            "iframeButton",
+            "iframeBehavior",
             "extensionIcon",
         ],
         function (result) {
@@ -86,6 +89,22 @@ document
 document
     .querySelector("#autoRedirectLinks")
     .addEventListener("change", saveOptions);
-document.querySelector("#iframeButton").addEventListener("change", saveOptions);
+document.querySelector("#iframeBehavior").addEventListener("change", saveOptions);
 document.querySelector("#colorIcon").addEventListener("click", saveOptions);
 document.querySelector("#monoIcon").addEventListener("click", saveOptions);
+
+function normalizeIframeBehavior(value) {
+    if (!value) {
+        return null;
+    }
+    if (value === "iframeBehaviorReplace" || value === "iframeBehaviorNone") {
+        return value;
+    }
+    if (value === "iframeBehaviorButton" || value === "iframeButtonYes") {
+        return "iframeBehaviorReplace";
+    }
+    if (value === "iframeButtonNo") {
+        return "iframeBehaviorNone";
+    }
+    return null;
+}

@@ -24,6 +24,10 @@
             "redirect": "Apri in FreeTube"
         }
     },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Apri i link di YouTube in FreeTube"
+    },
     "introduction": {
         "page": {
             "title": "RedirectTube • Introduzione"
@@ -49,6 +53,11 @@
         "extensionIcon": {
             "label": "Icona dell'estensione"
         },
+        "iframeBehavior": {
+            "label": "iFrame behavior",
+            "none": "Nothing",
+            "replace": "Replace"
+        },
         "footer": {
             "kofi": "Se vi piace questa estensione, pensate a <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">comprarmi un tè</a> 🍵",
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
@@ -56,14 +65,25 @@
         },
         "page": {
             "title": "RedirectTube"
-        },
-        "iframeButton": {
-            "label": "Mostra il pulsante in iframes:"
         }
     },
     "popup": {
         "page": {
             "title": "RedirectTube"
         }
+    },
+    "iframePlaceholder": {
+        "page": {
+            "title": "RedirectTube • Scelta dell'incorporamento"
+        },
+        "body": {
+            "headline": "Choose where to watch",
+            "message": "Pick the player you want to use for this video."
+        },
+        "buttons": {
+            "freetube": "Open in FreeTube app",
+            "youtube": "Watch on YouTube"
+        },
+        "warning": "Impossibile leggere l'URL originale del video. Ricarica la pagina."
     }
 }
