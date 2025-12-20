@@ -7,6 +7,10 @@ on:
     types:
       - completed
 
+permissions:
+  contents: write
+  actions: read
+
 jobs:
   publish-cws:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -19,6 +23,7 @@ jobs:
         name: release-metadata
         path: release-info
         run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Load release metadata
       id: release-meta
@@ -38,6 +43,7 @@ jobs:
         name: unsigned-output
         path: unsigned
         run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish to Chrome Web Store
       uses: mobilefirstllc/cws-publish@latest
