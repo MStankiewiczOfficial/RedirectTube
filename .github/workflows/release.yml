@@ -76,7 +76,6 @@ jobs:
           printf "EXT_VERSION=%q\n" "$EXT_VERSION"
           printf "EXT_ID=%q\n" "$EXT_ID"
           printf "RELEASE_TAG=%q\n" "$RELEASE_TAG"
-          printf "RELEASE_NAME=%q\n" "$RELEASE_NAME"
         } >> release-metadata.env
 
     - name: Upload release metadata

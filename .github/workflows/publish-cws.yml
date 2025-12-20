@@ -29,6 +29,7 @@ jobs:
       id: release-meta
       run: |
         source release-info/release-metadata.env
+        RELEASE_NAME="${EXT_VERSION} (${RELEASE_TAG})"
         echo "EXT_NAME=${EXT_NAME}" >> $GITHUB_ENV
         echo "EXT_VERSION=${EXT_VERSION}" >> $GITHUB_ENV
         echo "RELEASE_TAG=${RELEASE_TAG}" >> $GITHUB_ENV
