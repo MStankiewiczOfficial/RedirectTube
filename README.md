@@ -47,7 +47,7 @@ The Chromium package supports Chrome, Chromium, Edge, Brave, Vivaldi, and other 
 ### Method 1: Chrome Web Store (recommended)
 You can install RedirectTube from the Chrome Web Store.
 
-[![Get it on Chrome Web Store](https://developer.chrome.com/static/images/branding/get_it_on_chrome_web_store_badge_2x.png)](https://chromewebstore.google.com/detail/jpbaggklodpddjcadlebabhiopjkjfjh/)
+[![Get it on Chrome Web Store](https://developer.chrome.com/static/docs/webstore/branding/image/206x58-chrome-web-bcb82d15b2486.png)](https://chromewebstore.google.com/detail/jpbaggklodpddjcadlebabhiopjkjfjh/)
 
 #### Method 2: Manual Chromium installation via developer mode
 
