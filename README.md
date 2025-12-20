@@ -40,9 +40,16 @@ This method is for developers and advanced users.
 4. Select the `manifest.json` file from the cloned repository (it's in the `src` directory).
    The extension is now installed in your browser.
 
-### Chromium-based browsers (unsigned)
+### Chromium-based browsers
 
 The Chromium package supports Chrome, Chromium, Edge, Brave, Vivaldi, and other Chromium-based browsers.
+
+### Method 1: Chrome Web Store (recommended)
+You can install RedirectTube from the Chrome Web Store.
+
+[![Get it on Chrome Web Store](https://developer.chrome.com/static/images/branding/get_it_on_chrome_web_store_badge_2x.png)](https://chromewebstore.google.com/detail/jpbaggklodpddjcadlebabhiopjkjfjh/)
+
+#### Method 2: Manual Chromium installation via developer mode
 
 > [!NOTE]
 > The Chromium build is unsigned and must be reloaded manually whenever you download a new release.
@@ -65,6 +72,9 @@ Click the RedirectTube button in the toolbar to open the current YouTube video i
 
 Right-click a YouTube link and select "Open in FreeTube" to open the video in FreeTube.
 ![](/assets/context-menu.jpg)
+
+### Auto-redirect
+You can enable auto-redirect in the extension options. When enabled, any YouTube link you open will automatically open in FreeTube instead.
 
 ## Issues
 
