@@ -100,7 +100,7 @@ If you encounter any issues, please report them on the [issues page](https://git
 
 If your language is not yet supported by RedirectTube, you can change that! Help develop the extension by translating it into your language.
 
-[![](https://translate.codeberg.org/widget/redirecttube/ui/open-graph.png)](https://translate.codeberg.org/engage/redirecttube/)
+[![](https://translate.codeberg.org/widget/redirecttube/ui/multi-auto.svg)](https://translate.codeberg.org/engage/redirecttube/)
 
 ## License
 

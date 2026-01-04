@@ -19,7 +19,6 @@ body {
 .wrapper {
     width: 100%;
     background-color: var(--background);
-    border: 1px solid #79797979;
     overflow: hidden;
 }
 
@@ -58,6 +57,15 @@ h1 {
 p {
     margin: 0 0 18px;
     line-height: 1.5;
+}
+
+a {
+    color: var(--url);
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: var(--url-hover);
 }
 
 .actions {
@@ -105,6 +113,12 @@ button:disabled {
     color: #79797979;
     cursor: not-allowed;
     transform: none;
+}
+
+#note {
+    font-size: 0.9rem;
+    color: var(--note);
+    margin-top: 12px;
 }
 
 .warning {

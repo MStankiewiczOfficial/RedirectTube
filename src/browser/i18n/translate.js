@@ -1,12 +1,16 @@
 (() => {
     const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
-    const SUPPORTED_LANGS = ["en", "pl", "nl", "fi", "fr", "it", "lv"];
+    const SUPPORTED_LANGS = ["en", "pl", "nl", "fi", "fr", "it", "lv", "et"];
+    const FALLBACK_LANG = "en";
+    let fallbackMessages = null;
+    let fallbackLoadPromise = null;
 
     const lang = resolveLanguage();
     document.documentElement.lang = lang;
     persistLanguage(lang);
 
-    function translateDocument() {
+    async function translateDocument() {
+        await ensureFallbackMessages();
         const elements = document.querySelectorAll("[data-i18n]");
         elements.forEach((element) => {
             const key = element.getAttribute("data-i18n");
@@ -18,11 +22,21 @@
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", translateDocument, {
-            once: true,
-        });
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                translateDocument().catch((error) =>
+                    console.warn("Failed to translate document", error)
+                );
+            },
+            {
+                once: true,
+            }
+        );
     } else {
-        translateDocument();
+        translateDocument().catch((error) =>
+            console.warn("Failed to translate document", error)
+        );
     }
 
     function resolveLanguage() {
@@ -57,7 +71,11 @@
         if (!messageName) {
             return "";
         }
-        return extensionApi.i18n.getMessage(messageName) || "";
+        const translated = extensionApi.i18n.getMessage(messageName) || "";
+        if (translated) {
+            return translated;
+        }
+        return (fallbackMessages && fallbackMessages[messageName]) || "";
     }
 
     function toMessageName(key) {
@@ -67,6 +85,46 @@
             .filter(Boolean)
             .join("_")
             .replace(/[^A-Za-z0-9_]/g, "_");
+    }
+
+    async function ensureFallbackMessages() {
+        if (fallbackMessages) {
+            return fallbackMessages;
+        }
+        if (!fallbackLoadPromise) {
+            fallbackLoadPromise = loadLocaleMessages(FALLBACK_LANG);
+        }
+        fallbackMessages = await fallbackLoadPromise;
+        return fallbackMessages;
+    }
+
+    async function loadLocaleMessages(locale) {
+        if (
+            !extensionApi.runtime ||
+            typeof extensionApi.runtime.getURL !== "function"
+        ) {
+            return {};
+        }
+        try {
+            const url = extensionApi.runtime.getURL(
+                `_locales/${locale}/messages.json`
+            );
+            const response = await fetch(url);
+            if (!response.ok) {
+                return {};
+            }
+            const data = await response.json();
+            const messages = {};
+            Object.entries(data || {}).forEach(([key, value]) => {
+                if (value && typeof value.message === "string") {
+                    messages[key] = value.message;
+                }
+            });
+            return messages;
+        } catch (error) {
+            console.warn(`Unable to load fallback locale: ${locale}`, error);
+            return {};
+        }
     }
 })();
 

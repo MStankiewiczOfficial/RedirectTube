@@ -84,6 +84,11 @@
             "freetube": "Otwórz w aplikacji FreeTube",
             "youtube": "Oglądaj w YouTube"
         },
+        "note": {
+            "before_link": "Info: Jeśli chcesz zawsze korzystać z oryginalnej ramki YouTube, możesz wyłączyć to okno w ",
+            "link": "ustawieniach RedirectTube",
+            "after_link": "."
+        },
         "warning": "Nie można odczytać oryginalnego adresu URL filmu. Odśwież stronę."
     }
 }

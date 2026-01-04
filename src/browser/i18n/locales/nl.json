@@ -11,21 +11,26 @@
             "redirect": "Doorverwijzen naar FreeTube",
             "showPopup": "Menu openen"
         },
-        "autoRedirectLinks": {
-            "label": "Automatically redirect YouTube links when clicked"
-        },
         "footer": {
             "kofi": "Als je deze add-on graag gebruikt, overweg dan <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">een donatie (bijv. een kopje thee)</a> 🍵",
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
             "affiliation": "RedirectTube is niet verbonden aan FreeTube of de makers ervan.<br>FreeTube wordt uitgebracht onder de voorwaarden van de <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0-licentie</a>.<br>De naam ‘FreeTube’ en het FreeTube-logo zijn eigendom van de <a href=\"https://docs.freetubeapp.io/credits/\">makers van FreeTube</a>."
         },
-            "iframeBehavior": {
-                "label": "iFrame behavior",
-                "none": "Nothing",
-                "replace": "Replace"
-            },
+        "iframeButton": {
+            "label": "Knop op iframes tonen",
+            "yes": "Ja",
+            "no": "Nee"
+        },
         "page": {
             "title": "RedirectTube"
+        },
+        "autoRedirectLinks": {
+            "label": "YouTube-links automatisch laten doorverwijzen na aanklikken"
+        },
+        "iframeBehavior": {
+            "replace": "Vervangen",
+            "label": "iFrame-gedrag",
+            "none": "Niets"
         }
     },
     "ui": {
@@ -43,19 +48,15 @@
         "error": {
             "e404": "Deze pagina kan niet worden geopend in FreeTube."
         },
-        "yes": "Ja",
-        "no": "Nee",
         "iframeButton": {
             "redirect": "Bekijken op"
         },
         "close": "Sluiten",
         "contextMenu": {
             "redirect": "Openen in FreeTube"
-        }
-    },
-    "extension": {
-        "name": "RedirectTube",
-        "description": "Open YouTube-links in FreeTube"
+        },
+        "no": "Nee",
+        "yes": "Ja"
     },
     "introduction": {
         "page": {
@@ -72,18 +73,27 @@
             "title": "RedirectTube"
         }
     },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "YouTube-links openen in FreeTube"
+    },
     "iframePlaceholder": {
-        "page": {
-            "title": "RedirectTube • Insluiting kiezen"
-        },
+        "warning": "De oorspronkelijke videolink kan niet worden gebruikt. Herlaad de pagina.",
         "body": {
-            "headline": "Choose where to watch",
-            "message": "Pick the player you want to use for this video."
+            "message": "Kies de te gebruiken speler.",
+            "headline": "Kies de kijklocatie"
         },
         "buttons": {
-            "freetube": "Open in FreeTube app",
-            "youtube": "Watch on YouTube"
+            "youtube": "Bekijken op YouTube",
+            "freetube": "Openen in FreeTube-app"
         },
-        "warning": "Het oorspronkelijke video-adres kan niet worden gelezen. Laad de pagina opnieuw."
+        "page": {
+            "title": "RedirectTube • Insluitkeuze"
+        },
+        "note": {
+            "link": "RedirectTube-instellingen",
+            "before_link": "Let op: je kunt dit venster uitschakelen in de",
+            "after_link": " als je de voorkeur geeft aan het oorspronkelijke YouTube-scherm."
+        }
     }
 }

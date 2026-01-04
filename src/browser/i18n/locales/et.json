@@ -1,0 +1,100 @@
+{
+    "ui": {
+        "close": "Sulge",
+        "button": {
+            "opinion": "Räägi, mida sa arvad",
+            "redirect": "Ava see sait FreeTube'is",
+            "issue": "Teata veast või probleemist",
+            "options": "Valikud",
+            "suggestion": "Soovita muudatusi",
+            "translationHelp": "Aita tõlkimisega"
+        },
+        "beta": {
+            "label": "Beeta"
+        },
+        "createdby": "Loodud suure ❤️'ga <a href=\"https://www.stankiewiczm.eu\" target=\"_blank\">Michał Stankiewiczi</a> poolt",
+        "error": {
+            "e404": "Selle lehe avamine FreeTube'is ei õnnestu."
+        },
+        "iframeButton": {
+            "redirect": "Vaata siin:"
+        },
+        "contextMenu": {
+            "redirect": "Ava FreeTube'is"
+        },
+        "no": "Ei",
+        "yes": "Jah"
+    },
+    "options": {
+        "extensionIcon": {
+            "label": "Laienduse ikoon"
+        },
+        "options": {
+            "title": "Valikud"
+        },
+        "popupBehavior": {
+            "label": "Laienduse ikoonil klõpsates",
+            "redirect": "Ümbersuunamine FreeTube' i",
+            "showPopup": "Näita menüüd"
+        },
+        "footer": {
+            "kofi": "Kui sulle see laiendus meeldib, <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">siis osta mulle teed</a> 🍵",
+            "version": "RedirectTube'i versioon <span id=\"version\">X.Y.Z</span>",
+            "affiliation": "RedirectTube pole seotud FreeTube'i ega tema loojatega.<br>FreeTube on litsentseeritud <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0 litsentsi alusel</a>.<br>Nimi „FreeTube“ ja FreeTube'i logo on <a href=\"https://docs.freetubeapp.io/credits/\">FreeTube'i loojate</a> omand."
+        },
+        "iframeButton": {
+            "label": "Näita nuppu iframe'ide puhul",
+            "yes": "Jah",
+            "no": "Ei"
+        },
+        "page": {
+            "title": "RedirectTube"
+        },
+        "autoRedirectLinks": {
+            "label": "Klõpsamisel luba YouTube'i linkide automaatset edasisuunamist"
+        },
+        "iframeBehavior": {
+            "replace": "Asenda",
+            "label": "iFrame'i käitumine",
+            "none": "Mitte midagi"
+        }
+    },
+    "introduction": {
+        "page": {
+            "title": "RedirectTube • Sissejuhatus"
+        },
+        "usage": {
+            "title": "Kasutus",
+            "toolbar": "Kui oled YouTube'i lehel, siis klõpsa seda ikooni",
+            "contextMenu": "või klõpsa parema hiirenupuga YouTube'i video võrguaadressi"
+        }
+    },
+    "popup": {
+        "page": {
+            "title": "RedirectTube"
+        }
+    },
+    "extension": {
+        "name": "RedirectTube",
+        "description": "Ava YouTube'i lingid FreeTube'is"
+    },
+    "iframePlaceholder": {
+        "warning": "Algse video võrguaadressi lugemine ei õnnestu. Palun laadi leht uuesti.",
+        "body": {
+            "message": "Vali meediaesitaja, mida tahad selle videoga kasutada.",
+            "headline": "Kus saad vaadata"
+        },
+        "buttons": {
+            "youtube": "Vaata YouTube'is",
+            "freetube": "Ava FreeTube'i rakenduses"
+        },
+        "page": {
+            "title": "RedirectTube • Lõimitud valik"
+        },
+        "note": {
+            "link": "RedirectTube'is seadistustes",
+            "before_link": "Märkus: Sa saad keelata selle päringu",
+            "after_link": " , kui tahad alati kasutada algset YouTube'i iframe'i."
+        }
+    }
+}

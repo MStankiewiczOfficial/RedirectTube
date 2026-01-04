@@ -2,7 +2,7 @@
     "name": "__MSG_extension_name__",
     "description": "__MSG_extension_description__",
     "author": "Michał Stankiewicz",
-    "version": "1.12.0",
+    "version": "1.12.1",
     "manifest_version": 3,
     "default_locale": "en",
     "icons": {
@@ -26,7 +26,6 @@
                 "<all_urls>"
             ],
             "js": ["content.js"],
-            "css": ["content.css"],
             "all_frames": true
         }
     ],
@@ -44,7 +43,6 @@
     "permissions": [
         "storage",
         "tabs",
-        "activeTab",
         "contextMenus"
     ],
     "action": {

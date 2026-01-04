@@ -5,6 +5,7 @@
     --color2-transparent: #cb131370;
     --url: #00308a;
     --url-hover: #0056b3;
+    --note: #555;
 }
 
 .browser-light {
@@ -23,6 +24,7 @@
         --color2-transparent: #ffffff70;
         --url: #679ef1;
         --url-hover: #8cb4f8;
+        --note: #aaa;
     }
     .browser-light {
         display: none;

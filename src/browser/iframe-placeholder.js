@@ -8,6 +8,7 @@
 
     const buttons = document.querySelectorAll("[data-action]");
     const warning = document.getElementById("warning");
+    const settingsLink = document.getElementById("settingsLink");
 
     init();
 
@@ -24,6 +25,8 @@
             applyLabelFallback(resolvedLabel);
         }
 
+        setupSettingsLink();
+
         if (!videoUrl) {
             showWarning();
             return;
@@ -35,6 +38,48 @@
                 postAction(button.dataset.action);
             });
         });
+    }
+
+    function setupSettingsLink() {
+        if (!settingsLink) {
+            return;
+        }
+
+        const optionsUrl =
+            extensionApi &&
+            extensionApi.runtime &&
+            typeof extensionApi.runtime.getURL === "function"
+                ? extensionApi.runtime.getURL("options.html")
+                : null;
+
+        if (optionsUrl) {
+            settingsLink.setAttribute("href", optionsUrl);
+            settingsLink.setAttribute("target", "_blank");
+            settingsLink.setAttribute("rel", "noreferrer noopener");
+        }
+
+        settingsLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            openExtensionOptions();
+        });
+    }
+
+    function openExtensionOptions() {
+        if (!extensionApi || !extensionApi.runtime) {
+            return;
+        }
+
+        if (typeof extensionApi.runtime.openOptionsPage === "function") {
+            extensionApi.runtime.openOptionsPage();
+            return;
+        }
+
+        if (typeof extensionApi.runtime.getURL === "function") {
+            const url = extensionApi.runtime.getURL("options.html");
+            if (url) {
+                window.open(url, "_blank", "noopener,noreferrer");
+            }
+        }
     }
 
     function showWarning() {
