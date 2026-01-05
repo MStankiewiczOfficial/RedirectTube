@@ -82,12 +82,35 @@ function handleUrlChange(url) {
 }
 
 function isYoutubeUrl(url) {
-    return (
-        url.startsWith("https://www.youtube.com/watch?v=") ||
-        url.startsWith("https://www.youtube.com/playlist?list=") ||
-        url.startsWith("https://www.youtube.com/@") ||
-        url.startsWith("https://www.youtube.com/channel/")
-    );
+    try {
+        const parsedUrl = new URL(url);
+        const host = parsedUrl.hostname.toLowerCase();
+        if (host === "youtu.be") {
+            return parsedUrl.pathname.length > 1;
+        }
+        if (!host.endsWith("youtube.com")) {
+            return false;
+        }
+        const path = parsedUrl.pathname;
+        if (path.startsWith("/watch") && parsedUrl.searchParams.has("v")) {
+            return true;
+        }
+        if (path.startsWith("/playlist") && parsedUrl.searchParams.has("list")) {
+            return true;
+        }
+        if (path.startsWith("/@")) {
+            return true;
+        }
+        if (path.startsWith("/channel/")) {
+            return true;
+        }
+        if (path.startsWith("/live/")) {
+            return true;
+        }
+        return false;
+    } catch (error) {
+        return false;
+    }
 }
 
 function updateActionIcon() {
