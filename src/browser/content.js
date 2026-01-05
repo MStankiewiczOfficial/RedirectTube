@@ -404,6 +404,9 @@ function shouldRedirectUrl(url) {
             if (parsedUrl.pathname.startsWith("/channel/")) {
                 return true;
             }
+            if (parsedUrl.pathname.startsWith("/live/")) {
+                return true;
+            }
         }
     } catch (error) {
         return false;

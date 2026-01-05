@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
             url.startsWith("https://www.youtube.com/watch?v=") ||
             url.startsWith("https://www.youtube.com/playlist?list=") ||
             url.startsWith("https://www.youtube.com/@") ||
-            url.startsWith("https://www.youtube.com/channel/")
+            url.startsWith("https://www.youtube.com/channel/") ||
+            url.startsWith("https://www.youtube.com/live/")
         ) {
             loadOptions(url, tabs);
         } else {
