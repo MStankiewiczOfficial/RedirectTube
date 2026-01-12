@@ -1,6 +1,7 @@
 <p align="center">
    <img src="/assets/banner.jpg" title="RedirectTube">
-   <a href="https://addons.mozilla.org/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a>
+   <br>
+   <a href="https://addons.mozilla.org/firefox/addon/redirecttube/"><img src="https://img.shields.io/amo/rating/redirecttube%40stankiewiczm.eu?style=for-the-badge&logo=firefox&logoColor=white&label=Mozilla%20Add-ons%20Rating"></a> <a href="https://chromewebstore.google.com/detail/jpbaggklodpddjcadlebabhiopjkjfjh/"><img src="https://img.shields.io/chrome-web-store/rating/jpbaggklodpddjcadlebabhiopjkjfjh?style=for-the-badge&logo=chromewebstore&logoColor=white&label=Chrome%20Web%20Store%20Rating"></a>
    <br>
    <img src="https://app.codacy.com/project/badge/Grade/5fbd04d2b238474ca9c21fc62de6ecda"><a href="https://translate.codeberg.org/engage/redirecttube/"><img src="https://translate.codeberg.org/widget/redirecttube/ui/svg-badge.svg"></a>
 </a>
@@ -8,7 +9,7 @@
 
 ## Open YouTube links in FreeTube
 
-RedirectTube is a browser extension that redirects YouTube links to FreeTube. It is available for Firefox and Chromium-based browsers (Chromium builds are distributed unsigned).
+RedirectTube is a browser extension that redirects YouTube links to FreeTube. It is available for Firefox and Chromium-based browsers.
 
 ## Installation
 
@@ -99,6 +100,7 @@ If you encounter any issues, please report them on the [issues page](https://git
 ## Translation
 
 If your language is not yet supported by RedirectTube, you can change that! Help develop the extension by translating it into your language.
+Translations are managed via the [Codeberg platform](https://translate.codeberg.org/engage/redirecttube/).
 
 [![](https://translate.codeberg.org/widget/redirecttube/ui/multi-auto.svg)](https://translate.codeberg.org/engage/redirecttube/)
 

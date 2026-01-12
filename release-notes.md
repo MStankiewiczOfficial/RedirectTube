@@ -1,10 +1,9 @@
-# 1.12.2 (26012)
+# 1.12.3 (26013)
 [patch release]
 
 ## Release Notes
 
-- Fixed live channel redirection support.
-- Fixed icon display issues in some browsers.
+- Fixed a bug causing the "Give your opinion" button in the popup and options page to open Firefox Add-ons instead of the Chrome Web Store on Chromium-based browsers.
 
 > [!NOTE]
 > In the next future update, the following languages will have to be removed because they do not meet the [translation standards](TRANSLATION-STANDARDS.md), meaning they have not reached 85% of translated strings. These languages are Finnish, French, Indonesian, Latvian, and Italian. Please consider contributing to the translations on [Codeberg](https://translate.codeberg.org/projects/redirecttube) if you speak any of these languages and would like to help keep them in the extension.

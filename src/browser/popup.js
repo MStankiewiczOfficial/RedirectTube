@@ -57,8 +57,15 @@ optionsButton.addEventListener("click", function () {
 });
 
 opinionButton.addEventListener("click", function () {
+    if (extensionApi.runtime.getManifest().browser_specific_settings) {
+        var website =
+            "https://addons.mozilla.org/firefox/addon/redirecttube/reviews/";
+    } else {
+        var website =
+            "https://chromewebstore.google.com/detail/redirecttube/jpbaggklodpddjcadlebabhiopjkjfjh/reviews";
+    }
     extensionApi.tabs.create({
-        url: "https://addons.mozilla.org/firefox/addon/redirecttube/",
+        url: website,
     });
 });
 
