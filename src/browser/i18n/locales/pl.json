@@ -65,6 +65,27 @@
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
             "kofi": "Jeśli podoba Ci się to rozszerzenie, rozważ <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">postawienie mi herbaty</a> 🍵",
             "affiliation": "RedirectTube nie jest powiązany z FreeTube ani jego twórcami. FreeTube jest licencjonowany na <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">licencji AGPL-3.0</a>. Nazwa \"FreeTube\" oraz logo FreeTube są własnością <a href=\"https://docs.freetubeapp.io/credits/\">twórców FreeTube</a>."
+        },
+        "urlRules": {
+            "advancedTitle": "Zaawansowane",
+            "title": "Ścieżki YouTube do przekierowania",
+            "allowAll": "Zezwól na wszystkie ścieżki YouTube (oprócz zablokowanych)",
+            "categoriesLabel": "Wybierz, które ścieżki mają być przekierowywane:",
+            "category": {
+                "watch": "Filmy i playlisty",
+                "shorts": "Shortsy",
+                "feed": "Kanały (subskrypcje, biblioteka, dla Ciebie)",
+                "search": "Wyniki wyszukiwania",
+                "hashtag": "Hashtagi i posty",
+                "podcasts": "Podcasty i gry",
+                "home": "Strona główna",
+                "profiles": "Kanały i profile"
+            },
+            "customLabel": "Niestandardowe ścieżki",
+            "customAdd": "Dodaj ścieżkę",
+            "customNote": "Dozwolone są tylko prefiksy ścieżek. Nie dołączaj domeny.",
+            "deniedLabel": "Zawsze zablokowane:",
+            "reset": "Przywróć domyślne ustawienia"
         }
     },
     "popup": {

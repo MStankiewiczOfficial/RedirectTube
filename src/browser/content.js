@@ -1,11 +1,13 @@
 const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
 
+
 let redirecttubeAutoRedirect = "autoRedirectLinksNo";
 let redirecttubeIframeBehavior = "iframeBehaviorReplace";
 let redirecttubeButtonLabel =
     localStorage.getItem("redirecttubeButtonName") || getDefaultButtonLabel();
 let isTopLevelDocument = false;
 let iframeSettingsReady = false;
+let redirecttubeUrlRulesConfig = getDefaultUrlRulesConfig();
 
 const iframeMetadata = new WeakMap();
 const iframePlaceholderUrl = extensionApi.runtime.getURL(
@@ -319,6 +321,12 @@ extensionApi.runtime.onMessage.addListener((request) => {
     redirecttubeAutoRedirect =
         request.redirecttubeAutoRedirect || redirecttubeAutoRedirect;
 
+    if (request.redirecttubeUrlRulesConfig) {
+        redirecttubeUrlRulesConfig = normalizeUrlRulesConfig(
+            request.redirecttubeUrlRulesConfig
+        );
+    }
+
     const shouldRefresh =
         !iframeSettingsReady ||
         redirecttubeIframeBehavior !== previousBehavior ||
@@ -383,36 +391,7 @@ function resolveAbsoluteUrl(href) {
 }
 
 function shouldRedirectUrl(url) {
-    try {
-        const parsedUrl = new URL(url);
-        const host = parsedUrl.hostname.toLowerCase();
-
-        if (host === "youtu.be") {
-            return parsedUrl.pathname.length > 1;
-        }
-
-        if (host.endsWith("youtube.com")) {
-            if (parsedUrl.pathname.startsWith("/watch") && parsedUrl.searchParams.has("v")) {
-                return true;
-            }
-            if (parsedUrl.pathname.startsWith("/playlist") && parsedUrl.searchParams.has("list")) {
-                return true;
-            }
-            if (parsedUrl.pathname.startsWith("/@")) {
-                return true;
-            }
-            if (parsedUrl.pathname.startsWith("/channel/")) {
-                return true;
-            }
-            if (parsedUrl.pathname.startsWith("/live/")) {
-                return true;
-            }
-        }
-    } catch (error) {
-        return false;
-    }
-
-    return false;
+    return isRedirectableYoutubeUrl(url, redirecttubeUrlRulesConfig);
 }
 
 function redirecttubeOpenInFreeTube(src) {
@@ -431,5 +410,114 @@ function getDefaultButtonLabel() {
         );
     }
     return "Watch on";
+}
+
+const DEFAULT_ALLOW_PREFIXES = [
+    "/watch",
+    "/playlist",
+    "/@",
+    "/channel/",
+    "/live/",
+    "/shorts/",
+    "/podcasts",
+    "/gaming",
+    "/feed/subscriptions",
+    "/feed/library",
+    "/feed/you",
+    "/post/",
+    "/hashtag/",
+    "/results",
+    "/",
+];
+
+const DEFAULT_DENY_PREFIXES = [
+    "/signin",
+    "/logout",
+    "/login",
+    "/oops",
+    "/error",
+    "/verify",
+    "/consent",
+    "/account",
+    "/premium",
+    "/paid_memberships",
+    "/s/ads",
+    "/pagead",
+    "/embed/",
+    "/iframe_api",
+    "/api/",
+    "/t/terms",
+    "/about/",
+    "/howyoutubeworks/",
+];
+
+function getDefaultUrlRulesConfig() {
+    return {
+        mode: "allowList",
+        allow: [...DEFAULT_ALLOW_PREFIXES],
+        deny: [...DEFAULT_DENY_PREFIXES],
+    };
+}
+
+function normalizeUrlRulesConfig(rawConfig) {
+    const base = getDefaultUrlRulesConfig();
+    if (!rawConfig || typeof rawConfig !== "object") {
+        return base;
+    }
+    const mode = rawConfig.mode === "allowAllExcept" ? "allowAllExcept" : "allowList";
+    const allow = Array.isArray(rawConfig.allow)
+        ? normalizePrefixList(rawConfig.allow)
+        : base.allow;
+    return {
+        mode,
+        allow,
+        deny: base.deny,
+    };
+}
+
+function normalizePrefixList(list) {
+    return Array.from(
+        new Set(
+            list
+                .map((item) => (typeof item === "string" ? item.trim() : ""))
+                .filter((item) => item.startsWith("/"))
+                .map((item) => item.toLowerCase())
+                .filter(Boolean)
+        )
+    );
+}
+
+function pathMatchesPrefix(path, prefixes) {
+    return prefixes.some((prefix) => path.startsWith(prefix));
+}
+
+function isRedirectableYoutubeUrl(url, config = redirecttubeUrlRulesConfig) {
+    try {
+        const parsedUrl = new URL(url);
+        const host = parsedUrl.hostname.toLowerCase();
+
+        if (host === "youtu.be") {
+            return parsedUrl.pathname.length > 1;
+        }
+
+        if (!host.endsWith("youtube.com")) {
+            return false;
+        }
+
+        const path = (parsedUrl.pathname || "/").toLowerCase();
+        const normalizedConfig = normalizeUrlRulesConfig(config);
+
+        if (pathMatchesPrefix(path, normalizedConfig.deny)) {
+            return false;
+        }
+
+        if (normalizedConfig.mode === "allowAllExcept") {
+            return true;
+        }
+
+        return pathMatchesPrefix(path, normalizedConfig.allow);
+    } catch (error) {
+        return false;
+    }
 }
 

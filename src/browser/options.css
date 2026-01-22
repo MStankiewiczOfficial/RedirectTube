@@ -42,6 +42,194 @@ a:hover {
     margin: 0.75em 32px;
 }
 
+.url-rules-section {
+    margin-top: 1.25em;
+}
+
+.url-rules-card {
+    margin-top: 0.75em;
+    padding: 16px;
+    border: 1px solid #79797979;
+    border-radius: 10px;
+    background-color: rgba(121, 121, 121, 0.08);
+}
+
+.collapsible {
+    border: 1px solid #7979793f;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background-color: rgba(121, 121, 121, 0.05);
+}
+
+.collapsible summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.collapsible summary::-webkit-details-marker {
+    display: none;
+}
+
+.collapsible summary::after {
+    transform: translateY(-2px);
+    content: "▸";
+    font-size: 0.9em;
+    color: #c7c7c7;
+    transition: transform 0.2s ease;
+}
+
+.collapsible[open] summary::after {
+    transform: rotate(90deg);
+}
+
+.collapsible h2 {
+    margin: 0;
+}
+
+.collapsible .url-rules-card {
+    margin-top: 12px;
+}
+
+.subsection.collapsible summary {
+    padding: 0;
+}
+
+.subsection.collapsible {
+    padding-top: 12px;
+}
+
+.url-rules-card .subsection + .subsection {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #7979793f;
+}
+
+.pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 14px;
+}
+
+.pill-toggle {
+    border: 1px solid #79797979;
+    background: transparent;
+    color: var(--color);
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.pill-toggle:hover {
+    border-color: #b0b0b0;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.pill-toggle.active {
+    background-color: rgba(203, 19, 20, 0.15);
+    border-color: #cb1314;
+    transform: translateY(-1px);
+}
+
+.pill-toggle:disabled,
+.pill-toggle.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pill-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 6px 0;
+}
+
+#urlRulesCustomInput {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #79797979;
+    background-color: rgba(0, 0, 0, 0.08);
+    color: var(--color);
+}
+
+.note,
+.muted {
+    font-size: 0.9em;
+    color: #c7c7c7;
+}
+
+.note {
+    margin: 6px 0 0;
+}
+
+.pill-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pill-list li {
+    padding: 6px 10px;
+    background-color: rgba(121, 121, 121, 0.2);
+    border: 1px solid #79797979;
+    border-radius: 999px;
+    font-size: 0.9em;
+}
+
+.pill-list-removable li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pill-remove {
+    border: none;
+    background: transparent;
+    color: var(--color);
+    cursor: pointer;
+    padding: 0 4px;
+    font-size: 1em;
+    line-height: 1;
+}
+
+.pill-remove:disabled,
+.pill-remove.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.section-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.9em;
+}
+
+.url-rules-card .disabled {
+    opacity: 0.5;
+}
+
+.url-rules-card .disabled .pill-toggle,
+.url-rules-card .disabled .pill-remove,
+.url-rules-card .disabled input[type="text"] {
+    pointer-events: none;
+}
+
 select {
     position: absolute;
     right: 32px;

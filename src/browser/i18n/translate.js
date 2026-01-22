@@ -1,6 +1,6 @@
 (() => {
     const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
-    const SUPPORTED_LANGS = ["en", "pl", "nl", "fi", "fr", "it", "lv", "et"];
+    const SUPPORTED_LANGS = ["en", "pl", "nl", "et"];
     const FALLBACK_LANG = "en";
     let fallbackMessages = null;
     let fallbackLoadPromise = null;
