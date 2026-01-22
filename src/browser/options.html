@@ -134,6 +134,49 @@
                 </label>
             </div>
         </div>
+        <div class="section url-rules-section">
+            <details class="collapsible" id="urlRulesAdvanced">
+                <summary>
+                    <h2 data-i18n="options.urlRules.advancedTitle">Advanced</h2>
+                </summary>
+                <div class="url-rules-card">
+                    <label class="toggle">
+                        <input type="checkbox" id="urlRulesAllowAll">
+                        <span data-i18n="options.urlRules.allowAll">Allow all YouTube paths (except blocked)</span>
+                    </label>
+                    <div class="subsection" id="urlRulesAllowList">
+                        <p class="muted" data-i18n="options.urlRules.categoriesLabel">Select which paths should be redirected:</p>
+                        <div class="pill-grid" id="urlRulesCategoryPills">
+                            <button type="button" class="pill-toggle" data-category="watch" data-i18n="options.urlRules.category.watch">Videos & playlists</button>
+                            <button type="button" class="pill-toggle" data-category="shorts" data-i18n="options.urlRules.category.shorts">Shorts</button>
+                            <button type="button" class="pill-toggle" data-category="feed" data-i18n="options.urlRules.category.feed">Feeds (subscriptions, library, you)</button>
+                            <button type="button" class="pill-toggle" data-category="search" data-i18n="options.urlRules.category.search">Search results</button>
+                            <button type="button" class="pill-toggle" data-category="hashtag" data-i18n="options.urlRules.category.hashtag">Hashtags & posts</button>
+                            <button type="button" class="pill-toggle" data-category="podcasts" data-i18n="options.urlRules.category.podcasts">Podcasts & gaming</button>
+                            <button type="button" class="pill-toggle" data-category="home" data-i18n="options.urlRules.category.home">Home</button>
+                            <button type="button" class="pill-toggle" data-category="profiles" data-i18n="options.urlRules.category.profiles">Channels & handles</button>
+                        </div>
+                        <label for="urlRulesCustomInput" data-i18n="options.urlRules.customLabel">Additional paths</label>
+                        <div class="pill-input-row">
+                            <input id="urlRulesCustomInput" type="text" placeholder="/example">
+                            <button id="urlRulesCustomAdd" type="button" data-i18n="options.urlRules.customAdd">Add path</button>
+                        </div>
+                        <ul id="urlRulesCustomList" class="pill-list pill-list-removable"></ul>
+                        <p class="note" data-i18n="options.urlRules.customNote">Only path prefixes are allowed. Do not include the domain.</p>
+                    </div>
+                    <details class="subsection collapsible" id="urlRulesDenySection">
+                        <summary>
+                            <span class="muted" data-i18n="options.urlRules.deniedLabel">Always blocked:</span>
+                        </summary>
+                        <ul id="urlRulesDenyList" class="pill-list"></ul>
+                    </details>
+                    <div class="section-actions">
+                        <button id="urlRulesReset" data-i18n="options.urlRules.reset">Restore defaults</button>
+                        <span class="error" id="urlRulesError"></span>
+                    </div>
+                </div>
+            </details>
+        </div>
         <br>
         <div class="section">
             <button id="opinionButton" data-i18n="ui.button.opinion">Give your opinion</button>

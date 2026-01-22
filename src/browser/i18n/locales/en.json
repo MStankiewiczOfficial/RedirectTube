@@ -65,6 +65,27 @@
             "version": "RedirectTube v<span id=\"version\">X.Y.Z</span>",
             "kofi": "If you like this extension, consider <a href=\"https://ko-fi.com/mstankiewicz\" target=\"_blank\">buying me a tea</a> 🍵",
             "affiliation": "RedirectTube is not affiliated with FreeTube or its creators.<br>FreeTube is licensed under the <a href=\"https://github.com/FreeTubeApp/FreeTube/blob/master/LICENSE\">AGPL-3.0 licence</a>.<br>The name \"FreeTube\" and FreeTube logo are the property of the <a href=\"https://docs.freetubeapp.io/credits/\">creators of FreeTube</a>."
+        },
+        "urlRules": {
+            "advancedTitle": "Advanced",
+            "title": "YouTube paths to redirect",
+            "allowAll": "Allow all YouTube paths (except blocked)",
+            "categoriesLabel": "Select which paths should be redirected:",
+            "category": {
+                "watch": "Videos & playlists",
+                "shorts": "Shorts",
+                "feed": "Feeds (subscriptions, library, you)",
+                "search": "Search results",
+                "hashtag": "Hashtags & posts",
+                "podcasts": "Podcasts & gaming",
+                "home": "Home",
+                "profiles": "Channels & handles"
+            },
+            "customLabel": "Additional paths",
+            "customAdd": "Add path",
+            "customNote": "Only path prefixes are allowed. Do not include the domain.",
+            "deniedLabel": "Always blocked:",
+            "reset": "Restore defaults"
         }
     },
     "popup": {

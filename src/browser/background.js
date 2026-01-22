@@ -1,9 +1,5 @@
 const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
 
-let lastUrlAllowed = false;
-let isDarkThemePreferred = false;
-let currentMenuLang = null;
-
 extensionApi.tabs.onUpdated.addListener((_tabId, changeInfo) => {
     if (changeInfo.url) {
         handleUrlChange(changeInfo.url);
@@ -29,14 +25,17 @@ extensionApi.runtime.onInstalled.addListener((details) => {
             extensionIcon: "color",
             autoRedirectLinks: "autoRedirectLinksNo",
             iframeBehavior: "iframeBehaviorReplace",
+            urlRulesConfig: getDefaultUrlRulesConfig(),
         });
     }
+    loadUrlRulesConfig();
     detectYTInThisTab();
     createContextMenu();
     updateContentScriptSettings();
 });
 
 extensionApi.runtime.onStartup.addListener(() => {
+    loadUrlRulesConfig();
     detectYTInThisTab();
     createContextMenu();
     updateContentScriptSettings();
@@ -44,6 +43,7 @@ extensionApi.runtime.onStartup.addListener(() => {
 
 extensionApi.runtime.onMessage.addListener((request, sender) => {
     if (request.message === "detectYT") {
+        loadUrlRulesConfig();
         detectYTInThisTab();
         updateContentScriptSettings();
     }
@@ -77,40 +77,8 @@ function handleUrlChange(url) {
     if (!url) {
         return;
     }
-    lastUrlAllowed = isYoutubeUrl(url);
+    lastUrlAllowed = isRedirectableYoutubeUrl(url, urlRulesConfig);
     updateActionIcon();
-}
-
-function isYoutubeUrl(url) {
-    try {
-        const parsedUrl = new URL(url);
-        const host = parsedUrl.hostname.toLowerCase();
-        if (host === "youtu.be") {
-            return parsedUrl.pathname.length > 1;
-        }
-        if (!host.endsWith("youtube.com")) {
-            return false;
-        }
-        const path = parsedUrl.pathname;
-        if (path.startsWith("/watch") && parsedUrl.searchParams.has("v")) {
-            return true;
-        }
-        if (path.startsWith("/playlist") && parsedUrl.searchParams.has("list")) {
-            return true;
-        }
-        if (path.startsWith("/@")) {
-            return true;
-        }
-        if (path.startsWith("/channel/")) {
-            return true;
-        }
-        if (path.startsWith("/live/")) {
-            return true;
-        }
-        return false;
-    } catch (error) {
-        return false;
-    }
 }
 
 function updateActionIcon() {
@@ -143,7 +111,12 @@ function getIconPath(preference, isAllowed, isDarkMode) {
 
 function updateContentScriptSettings() {
     extensionApi.storage.local.get(
-        ["iframeBehavior", "iframeButton", "autoRedirectLinks"],
+        [
+            "iframeBehavior",
+            "iframeButton",
+            "autoRedirectLinks",
+            "urlRulesConfig",
+        ],
         (result = {}) => {
             const iframeBehaviorSetting =
                 normalizeIframeBehavior(result.iframeBehavior) ||
@@ -151,6 +124,10 @@ function updateContentScriptSettings() {
                 "iframeBehaviorReplace";
             const autoRedirectSetting =
                 result.autoRedirectLinks || "autoRedirectLinksNo";
+
+            urlRulesConfig = normalizeUrlRulesConfig(
+                result.urlRulesConfig
+            );
 
             const buttonName =
                 getMessageByKey("ui.iframeButton.redirect") || "Watch on";
@@ -167,6 +144,7 @@ function updateContentScriptSettings() {
                             redirecttubeButtonName: buttonName,
                             redirecttubeIframeBehavior: iframeBehaviorSetting,
                             redirecttubeAutoRedirect: autoRedirectSetting,
+                            redirecttubeUrlRulesConfig: urlRulesConfig,
                         },
                         () => extensionApi.runtime.lastError
                     );
@@ -175,6 +153,129 @@ function updateContentScriptSettings() {
         }
     );
 }
+
+const DEFAULT_ALLOW_PREFIXES = [
+    "/watch",
+    "/playlist",
+    "/@",
+    "/channel/",
+    "/live/",
+    "/shorts/",
+    "/podcasts",
+    "/gaming",
+    "/feed/subscriptions",
+    "/feed/library",
+    "/feed/you",
+    "/post/",
+    "/hashtag/",
+    "/results",
+    "/",
+];
+
+const DEFAULT_DENY_PREFIXES = [
+    "/signin",
+    "/logout",
+    "/login",
+    "/oops",
+    "/error",
+    "/verify",
+    "/consent",
+    "/account",
+    "/premium",
+    "/paid_memberships",
+    "/s/ads",
+    "/pagead",
+    "/embed/",
+    "/iframe_api",
+    "/api/",
+    "/t/terms",
+    "/about/",
+    "/howyoutubeworks/",
+];
+
+function getDefaultUrlRulesConfig() {
+    return {
+        mode: "allowList",
+        allow: [...DEFAULT_ALLOW_PREFIXES],
+        deny: [...DEFAULT_DENY_PREFIXES],
+    };
+}
+
+function normalizeUrlRulesConfig(rawConfig) {
+    const base = getDefaultUrlRulesConfig();
+    if (!rawConfig || typeof rawConfig !== "object") {
+        return base;
+    }
+    const mode = rawConfig.mode === "allowAllExcept" ? "allowAllExcept" : "allowList";
+    const allow = Array.isArray(rawConfig.allow)
+        ? normalizePrefixList(rawConfig.allow)
+        : base.allow;
+    return {
+        mode,
+        allow,
+        deny: base.deny,
+    };
+}
+
+function normalizePrefixList(list) {
+    return Array.from(
+        new Set(
+            list
+                .map((item) => (typeof item === "string" ? item.trim() : ""))
+                .filter((item) => item.startsWith("/"))
+                .map((item) => item.toLowerCase())
+                .filter(Boolean)
+        )
+    );
+}
+
+function loadUrlRulesConfig(callback) {
+    extensionApi.storage.local.get("urlRulesConfig", (result = {}) => {
+        urlRulesConfig = normalizeUrlRulesConfig(result.urlRulesConfig);
+        if (typeof callback === "function") {
+            callback(urlRulesConfig);
+        }
+    });
+}
+
+function pathMatchesPrefix(path, prefixes) {
+    return prefixes.some((prefix) => path.startsWith(prefix));
+}
+
+function isRedirectableYoutubeUrl(url, config = urlRulesConfig) {
+    try {
+        const parsedUrl = new URL(url);
+        const host = parsedUrl.hostname.toLowerCase();
+
+        if (host === "youtu.be") {
+            return parsedUrl.pathname.length > 1;
+        }
+
+        if (!host.endsWith("youtube.com")) {
+            return false;
+        }
+
+        const path = (parsedUrl.pathname || "/").toLowerCase();
+        const normalizedConfig = normalizeUrlRulesConfig(config);
+
+        if (pathMatchesPrefix(path, normalizedConfig.deny)) {
+            return false;
+        }
+
+        if (normalizedConfig.mode === "allowAllExcept") {
+            return true;
+        }
+
+        return pathMatchesPrefix(path, normalizedConfig.allow);
+    } catch (error) {
+        return false;
+    }
+}
+
+let lastUrlAllowed = false;
+let isDarkThemePreferred = false;
+let currentMenuLang = null;
+let urlRulesConfig = getDefaultUrlRulesConfig();
 
 extensionApi.contextMenus.onClicked.addListener((info) => {
     if (info.menuItemId === "openInFreeTube" && info.linkUrl) {
