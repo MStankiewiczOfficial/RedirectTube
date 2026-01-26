@@ -31,6 +31,27 @@
             "replace": "Vervangen",
             "label": "iFrame-gedrag",
             "none": "Niets"
+        },
+        "urlRules": {
+            "advancedTitle": "Geavanceerd",
+            "title": "YouTube-locaties om door te verwijzen",
+            "allowAll": "Alle YouTube-locaties toestaan (behalve geblokkeerde)",
+            "categoriesLabel": "Kies welke locaties moeten worden doorverwezen:",
+            "category": {
+                "watch": "Video's en afspeellijsten",
+                "shorts": "Shorts",
+                "feed": "Feeds (abonnementen, bibliotheek, jij)",
+                "search": "Zoekresultaten",
+                "hashtag": "Hashtags en berichten",
+                "podcasts": "Podcasts en gaming",
+                "home": "Startpagina",
+                "profiles": "Kanalen en kanaalnamen"
+            },
+            "customLabel": "Aanvullende locaties",
+            "customAdd": "Locatie toevoegen",
+            "customNote": "Let op: voer alléén de locatienamen zelf in, dus niet de domeinnaam.",
+            "deniedLabel": "Altijd geblokkeerd:",
+            "reset": "Standaardwaarden herstellen"
         }
     },
     "ui": {
@@ -43,7 +64,8 @@
             "redirect": "Website openen in FreeTube",
             "issue": "Meld een probleem",
             "options": "Instellingen",
-            "suggestion": "Deel een idee"
+            "suggestion": "Deel een idee",
+            "translationHelp": "Helpen met vertalen"
         },
         "error": {
             "e404": "Deze pagina kan niet worden geopend in FreeTube."
