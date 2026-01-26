@@ -1,5 +1,44 @@
 const extensionApi = typeof chrome !== "undefined" ? chrome : browser;
 
+const DEFAULT_ALLOW_PREFIXES = [
+    "/watch",
+    "/playlist",
+    "/@",
+    "/channel/",
+    "/live/",
+    "/shorts/",
+    "/podcasts",
+    "/gaming",
+    "/feed/subscriptions",
+    "/feed/library",
+    "/feed/you",
+    "/post/",
+    "/hashtag/",
+    "/results",
+    "/",
+];
+
+const DEFAULT_DENY_PREFIXES = [
+    "/signin",
+    "/logout",
+    "/login",
+    "/oops",
+    "/error",
+    "/verify",
+    "/consent",
+    "/account",
+    "/premium",
+    "/paid_memberships",
+    "/s/ads",
+    "/pagead",
+    "/embed/",
+    "/iframe_api",
+    "/api/",
+    "/t/terms",
+    "/about/",
+    "/howyoutubeworks/",
+];
+
 
 let redirecttubeAutoRedirect = "autoRedirectLinksNo";
 let redirecttubeIframeBehavior = "iframeBehaviorReplace";
@@ -411,45 +450,6 @@ function getDefaultButtonLabel() {
     }
     return "Watch on";
 }
-
-const DEFAULT_ALLOW_PREFIXES = [
-    "/watch",
-    "/playlist",
-    "/@",
-    "/channel/",
-    "/live/",
-    "/shorts/",
-    "/podcasts",
-    "/gaming",
-    "/feed/subscriptions",
-    "/feed/library",
-    "/feed/you",
-    "/post/",
-    "/hashtag/",
-    "/results",
-    "/",
-];
-
-const DEFAULT_DENY_PREFIXES = [
-    "/signin",
-    "/logout",
-    "/login",
-    "/oops",
-    "/error",
-    "/verify",
-    "/consent",
-    "/account",
-    "/premium",
-    "/paid_memberships",
-    "/s/ads",
-    "/pagead",
-    "/embed/",
-    "/iframe_api",
-    "/api/",
-    "/t/terms",
-    "/about/",
-    "/howyoutubeworks/",
-];
 
 function getDefaultUrlRulesConfig() {
     return {
